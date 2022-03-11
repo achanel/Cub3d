@@ -19,7 +19,7 @@ HEADERS_LIST = cub3D.h
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIRECTORY = ./src/
-SRCS_LIST	= cub3D.c get_next_line.c hook.c utils.c
+SRCS_LIST	= cub3D.c get_next_line.c hook.c utils.c mlx_utils.c
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
 OBJS_DIRECTORY = objects/
@@ -29,7 +29,7 @@ OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 CC			= gcc
 
 # CFLAGS	= -Wall -Wextra -Werror -O3
-CFLAGS	= -O3 
+CFLAGS	= -O3 -g
 
 all:		${NAME}
 

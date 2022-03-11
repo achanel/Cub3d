@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   mlx_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/03/09 17:56:21 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/11 14:45:40 by achanel          ###   ########.fr       */
+/*   Created: 2022/03/11 14:10:53 by achanel           #+#    #+#             */
+/*   Updated: 2022/03/11 16:27:09 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	ft_errors(char *error_str)
+void	my_mlx_pixel_put(t_all *all, t_point point, int color)
 {
-	write(2, error_str, ft_strlen(error_str));
-	exit(EXIT_FAILURE);
+	char	*dst;
+
+	dst = all->win->addr + (point.y * all->win->line_length + point.x
+			* (all->win->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }
 
-//Malloc
-//File not found/invalid type
-//Bad map format
-//Duplicate textures
-//Duplicate resolutions
-//Duplicatre colors
-//Bad texture file
-//Bad color format
-//Some keys are invalid
-//Invalid main arguments
-//Invalid resolution
-//Invalid init

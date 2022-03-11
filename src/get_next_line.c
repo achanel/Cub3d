@@ -85,6 +85,7 @@ int	get_next_line(int fd, char **line)
 		if (trim > -1)
 			return (bwr);
 	}
+	printf("%s\n", buf_gl[fd]);
 	free(buf_gl[fd]);
 	buf_gl[fd] = NULL;
 	return (-1);

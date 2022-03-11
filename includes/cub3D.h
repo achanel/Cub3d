@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/09 18:01:34 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/11 17:19:19 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,10 @@
 # define ARROW_DOWN 125
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
+# define W_KEY 13
+# define S_KEY 1
+# define A_KEY 0
+# define D_KEY 2
 # define KEY_ESC 53
 # define SCALE 16 // условный размер каждого квадратика в карте
 
@@ -62,11 +66,15 @@ typedef struct s_all // структура для всего вместе
 	t_plr		*plr;
 	char		**map;
 }	t_all;
+//main
+void	draw_screen(t_all *all);
 //gnl
 int		get_next_line(int fd, char **line);
 //hooks
 int		keyboard_hook(int keycode, t_all *all);
 //utils
 void	ft_errors(char *error_str);
+//mlx_utils
+void	my_mlx_pixel_put(t_all *all, t_point point, int color);
 
 #endif
