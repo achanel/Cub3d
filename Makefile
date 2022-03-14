@@ -19,7 +19,8 @@ HEADERS_LIST = cub3D.h
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIRECTORY = ./src/
-SRCS_LIST	= cub3D.c get_next_line.c hook.c utils.c mlx_utils.c
+SRCS_LIST	= cub3D.c get_next_line.c hook.c utils.c mlx_utils.c raycasting.c draw.c ray.c\
+				moves.c init.c
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
 OBJS_DIRECTORY = objects/

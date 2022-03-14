@@ -19,7 +19,7 @@ void	ft_draw_player(t_all *all)
 	tmp.x = all->plr->x;
 	tmp.y = all->plr->y;
 
-	// printf("%f %f\n", tmp.x, tmp.y);
+	printf("%f %f\n", tmp.x, tmp.y);
 	ft_bzero(&p_end, sizeof(t_point));
 	p_end.x = (tmp.x + 1) * SCALE;
 	p_end.y = (tmp.y + 1) * SCALE;
@@ -29,7 +29,7 @@ void	ft_draw_player(t_all *all)
 	{
 		while (tmp.x < p_end.x)
 		{
-			// my_mlx_pixel_put(all, tmp, 0xFFFF00);
+			my_mlx_pixel_put(all, tmp, 0xFFFF00);
 			tmp.x++;
 		}
 		tmp.x -= SCALE;
@@ -50,7 +50,7 @@ void	ft_scale_img(t_point point, t_all *all, int color)
 	{
 		while (point.x < end.x)
 		{
-			// my_mlx_pixel_put(all, point, color);
+			my_mlx_pixel_put(all, point, color);
 			point.x++;
 		}
 		point.x -= SCALE;
@@ -58,28 +58,52 @@ void	ft_scale_img(t_point point, t_all *all, int color)
 	}
 }
 
-// void	draw_screen(t_all *all)
-// {
-// 	t_point	point;
+void	ft_init_player(t_all *all)
+{
+	t_point	p;
 
-// 	ft_bzero(&point, sizeof(t_point));
-// 	while (all->map[point.y])
-// 	{
-// 		point.x = 0;
-// 		while (all->map[point.y][point.x])
-// 		{
-// 			if (all->map[point.y][point.x] == '1')
-// 				ft_scale_img(point, all, 0xFFFFFF);
-// 			else
-// 				ft_scale_img(point, all, 0x000000);
-// 			point.x++;
-// 		}
-// 		point.y++;
-// 	}
-// 	printf("%f %f\n", all->plr->x, all->plr->y);
-// 	ft_draw_player(all);
-// 	mlx_put_image_to_window(all->win->mlx, all->win->win, all->win->img, 0, 0);
-// }
+	ft_bzero(&p, sizeof(t_point));
+	while (all->map[++p.y])
+	{
+		p.x = -1;
+		while (all->map[p.y][++p.x])
+		{
+			if (all->map[p.y][p.x] == 'N')
+			{
+				ft_scale_img(p, all, 0x00FF00);
+				break ;
+			}
+		}
+	}
+	all->plr->x = p.x - 3;
+	all->plr->y = p.y - 3;
+	// all->plr->dir = 0;
+	// all->plr->start = 0;
+	// all->plr->end = 0;
+}
+
+void	draw_screen(t_all *all)
+{
+	t_point	point;
+
+	ft_bzero(&point, sizeof(t_point));
+	while (all->map[point.y])
+	{
+		point.x = 0;
+		while (all->map[point.y][point.x])
+		{
+			if (all->map[point.y][point.x] == '1')
+				ft_scale_img(point, all, 0xFFFFFF);
+			else
+				ft_scale_img(point, all, 0x000000);
+			point.x++;
+		}
+		point.y++;
+	}
+	printf("%f %f\n", all->plr->x, all->plr->y);
+	ft_draw_player(all);
+	mlx_put_image_to_window(all->win->mlx, all->win->win, all->win->img, 0, 0);
+}
 
 void	make_map(t_all *all, t_list **head, int size)
 {
@@ -98,7 +122,7 @@ void	make_map(t_all *all, t_list **head, int size)
 	// return (map);
 }
 
-void	test_parser(t_all *all)
+static void	test_parser(t_all *all)
 {
 	int		fd = open("./maps/map.cub", O_RDONLY);
 	char	*line = NULL;
@@ -110,6 +134,20 @@ void	test_parser(t_all *all)
 	make_map(all, &head, ft_lstsize(head));
 }
 
+static t_all	*init_all(void)
+{
+	t_all	*all;
+
+	all = malloc(sizeof(t_all));
+	all->map = malloc(sizeof(char **));
+	all->win = malloc(sizeof(t_win));
+	all->plr = malloc(sizeof(t_plr));
+	all->win->mlx = NULL;
+	all->win->win = NULL;
+	all->map = NULL;
+	return (all);
+}
+
 int	main(int ac, char **av)
 {
 	t_all	*all;
@@ -117,12 +155,17 @@ int	main(int ac, char **av)
 	// if (ac != 2)
 	// 	ft_errors("Invalid main arguments\n");
 	all = init_all();
-	// draw_screen(all);
-	mlx_do_key_autorepeatoff(all->win->mlx);
+	test_parser(all);
+	all->win->mlx = mlx_init();
+	all->win->win = mlx_new_window(all->win->mlx, WIDTH, HEIGHT, "cub3D");
+	all->win->img = mlx_new_image(all->win->mlx, WIDTH, HEIGHT);
+	all->win->addr = mlx_get_data_addr(all->win->img, &all->win->bits_per_pixel,
+			&all->win->line_length, &all->win->endian);
+	if (!all || !all->win->mlx)
+		ft_errors("Invalid init");
+	ft_init_player(all);
+	draw_screen(all);
 	mlx_key_hook(all->win->win, keyboard_hook, all);
-	mlx_hook(all->win->win, 2, 1L<<0, keyboard_hook, all);
-	mlx_hook(all->win->win, 17, 18, ft_exit, all);
-    mlx_loop_hook(all->win->mlx, loop_hook, all);
 	mlx_loop(all->win->mlx);
 	return (0);
 }

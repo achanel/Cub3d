@@ -3,12 +3,11 @@
 void	*ft_memset (void *dest, int c, size_t n)
 {
 	char	*src;
+	size_t	i;
 
-	src = (char *)dest;
-	while (n > 0)
-	{
-		src[n - 1] = c;
-		n--;
-	}
+	src = dest;
+	i = 0;
+	while (i < n)
+		src[i++] = c;
 	return (dest);
 }
