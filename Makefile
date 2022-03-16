@@ -30,7 +30,7 @@ OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 CC			= gcc
 
 # CFLAGS	= -Wall -Wextra -Werror -O3
-CFLAGS	= -O3 -g
+CFLAGS	= -g
 
 all:		${NAME}
 

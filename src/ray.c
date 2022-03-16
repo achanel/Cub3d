@@ -18,7 +18,7 @@ static void	draw_ray_x(t_all *all, t_draw draw)
 			cumul -= draw.dx;
 			px.y += draw.yinc;
 		}
-		my_mlx_pixel_put(all, px, draw.color);
+		fill_pixel(&all->win->addr, px, draw.color);
 		i++;
 	}
 }
@@ -41,7 +41,7 @@ static void	draw_ray_y(t_all *all, t_draw draw)
 			cumul -= draw.dy;
 			py.x += draw.xinc;
 		}
-		my_mlx_pixel_put(all, py, draw.color);
+		fill_pixel(&all->win->addr, py, draw.color);
 		i++;
 	}
 }
@@ -53,10 +53,10 @@ void		draw_ray(t_all *all, double xf, double yf, int color)
 	t_point	dp;
 
 	decalx = WIDTH - MINI_MAPW;
-	draw.xf = xf * (double)(MINI_MAPW / SQUARE_MAP_SIZE) + decalx;
-	draw.yf = yf * (double)(MINI_MAPH / SQUARE_MAP_SIZE);
-	draw.xi = all->plr->x * (double)(MINI_MAPW / SQUARE_MAP_SIZE) + decalx;
-	draw.yi = all->plr->y * (double)(MINI_MAPH / SQUARE_MAP_SIZE);
+	// draw.xf = xf * (double)(MINI_MAPW / SQUARE_MAP_SIZE) + decalx;
+	// draw.yf = yf * (double)(MINI_MAPH / SQUARE_MAP_SIZE);
+	// draw.xi = all->plr->x * (double)(MINI_MAPW / SQUARE_MAP_SIZE) + decalx;
+	// draw.yi = all->plr->y * (double)(MINI_MAPH / SQUARE_MAP_SIZE);
 	draw.dx = draw.xf - draw.xi;
 	draw.dy = draw.yf - draw.yi;
 	draw.xinc = draw.dx > 0 ? 1 : -1;
@@ -66,7 +66,7 @@ void		draw_ray(t_all *all, double xf, double yf, int color)
 	draw.color = color;
 	dp.x = draw.xi;
 	dp.y = draw.yi;
-	my_mlx_pixel_put(all, dp, draw.color);
+	fill_pixel(&all->win->addr, dp, draw.color);
 	if (draw.dx > draw.dy)
 		draw_ray_x(all, draw);
 	else

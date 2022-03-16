@@ -6,11 +6,19 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:10:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/11 16:27:09 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/16 19:14:20 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	fill_pixel(char **img, t_point pixel, int color)
+{
+	if (pixel.x < WIDTH && pixel.y < HEIGHT && pixel.x >= 0 && pixel.y >= 0)
+	{
+		((int*)*img)[pixel.x + (pixel.y * WIDTH)] = color;
+	}
+}
 
 void	my_mlx_pixel_put(t_all *all, t_point point, int color)
 {

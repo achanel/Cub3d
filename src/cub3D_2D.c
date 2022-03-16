@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3D.c                                            :+:      :+:    :+:   */
+/*   cub3D_2D.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:14:51 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/11 19:03:33 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/16 19:20:55 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+// #include "cub3D.h"
 
 void	ft_draw_player(t_all *all)
 {
@@ -19,7 +19,7 @@ void	ft_draw_player(t_all *all)
 	tmp.x = all->plr->x;
 	tmp.y = all->plr->y;
 
-	printf("%f %f\n", tmp.x, tmp.y);
+	// printf("%f %f\n", tmp.x, tmp.y);
 	ft_bzero(&p_end, sizeof(t_point));
 	p_end.x = (tmp.x + 1) * SCALE;
 	p_end.y = (tmp.y + 1) * SCALE;
@@ -100,7 +100,7 @@ void	draw_screen(t_all *all)
 		}
 		point.y++;
 	}
-	printf("%f %f\n", all->plr->x, all->plr->y);
+	// printf("%f %f\n", all->plr->x, all->plr->y);
 	ft_draw_player(all);
 	mlx_put_image_to_window(all->win->mlx, all->win->win, all->win->img, 0, 0);
 }
