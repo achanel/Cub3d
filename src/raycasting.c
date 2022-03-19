@@ -1,110 +1,106 @@
 #include "cub3D.h"
 
-void		draw_player_dir(t_all *all)
-{
-	double rayx;
-	double rayy;
-
-	rayx = all->plr->x + all->plr->dir_x;
-	rayy = all->plr->y + all->plr->dir_y;
-	draw_ray(all, rayx, rayy, 0x00ff00);
-}
-
-static void	cal_side_dist(t_ray *ray)
+static void	cal_side_dist(t_ray *ray, t_plr plr)
 {
 	if (ray->dirx < 0)
 	{
 		ray->stepx = -1;
-		ray->sidedx = (ray->posx - ray->mapx) * ray->ddistx;
+		ray->sidedx = (float)(plr.x - ray->mapx) * ray->ddistx;
 	}
 	else
 	{
 		ray->stepx = 1;
-		ray->sidedx = (ray->mapx + 1.0 - ray->posx) * ray->ddistx;
+		ray->sidedx = (float)(plr.x - 1 - ray->mapx) * (ray->ddistx * -1);
 	}
 	if (ray->diry < 0)
 	{
 		ray->stepy = -1;
-		ray->sidedy = (ray->posy - ray->mapy) * ray->ddisty;
+		ray->sidedy = (float)(plr.y - ray->mapy) * ray->ddisty;
 	}
 	else
 	{
 		ray->stepy = 1;
-		ray->sidedy = (ray->mapy + 1.0 - ray->posy) * ray->ddisty;
+		ray->sidedy = (float)(plr.y - 1 - ray->mapy) * (ray->ddisty * -1);
 	}
 }
 
 static void	hit_wall(t_all *all, t_ray *ray)
 {
-	while (1)
+	while (ray->hit == 1)
 	{
-		if (ray->sidedx < ray->sidedy)
-		{
-			ray->sidedx += ray->ddistx;
-			ray->mapx += ray->stepx;
-			ray->side = 0;
-		}
-		else
+		if (ray->sidedy < ray->sidedx)
 		{
 			ray->sidedy += ray->ddisty;
 			ray->mapy += ray->stepy;
-			ray->side = 1;
+			ray->side = 0;//NO_SO
 		}
-		if (all->map[ray->mapy][ray->mapx] > 0)
-			break ;
+		else
+		{
+			ray->sidedx += ray->ddistx;
+			ray->mapx += ray->stepx;
+			ray->side = 1;//WE_EA
+		}
+		if (ray->side)
+			ray->walldist = ray->sidedx - ray->ddistx;
+		else
+			ray->walldist = ray->sidedy - ray->ddisty;
 	}
 }
 
-static void	cal_dist_ray_to_perpwall(t_ray *ray)
+static void	cal_draw_start_end(t_ray *ray, t_all *all)
 {
-	if (ray->side == 0)
-	{
-		ray->walldist = (ray->mapx - ray->posx + (1 - ray->stepx) / 2)
-		/ ray->dirx;
-	}
-	else
-	{
-		ray->walldist = (ray->mapy - ray->posy + (1 - ray->stepy) / 2)
-		/ ray->diry;
-	}
-}
-
-static void	cal_draw_start_end(t_ray *ray)
-{
-	int line_height;
-
-	line_height = (int)(HEIGHT / ray->walldist);
-	ray->draw_start = -line_height / 2 + HEIGHT / 2;
+	ray->line_height = (int)(HEIGHT / ray->walldist);
+	ray->draw_start = -ray->line_height / 2 + HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
-	ray->draw_end = line_height / 2 + HEIGHT / 2;
+	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
 	if (ray->draw_end >= HEIGHT)
 		ray->draw_end = HEIGHT - 1;
+	if (ray->side == 0)
+		ray->wall_x = all->plr.x + ray->walldist * ray->dirx;
+	else
+		ray->wall_x = all->plr.y + ray->walldist * (ray->diry * -1);
+	ray->wall_x -= floor(ray->wall_x);
+	if (ray->side == 0 && ray->stepy == -1)
+		ray->tex = 3;
+	else if (ray->side == 0)
+		ray->tex = 2;
+	else if (ray->side == 1 && ray->stepx == 1)
+		ray->tex = 1;
+	else
+		ray->tex = 0;
+	ray->tex_x = (int)(ray->wall_x * (float)all->txt[ray->tex].w);
+	ray->tex_stepy = (float)all->txt[ray->tex].h / ray->line_height;
+	ray->tex_pos = (ray->draw_start - HEIGHT / 2 + ray->line_height / 2) * ray->tex_stepy;
+}
+
+void	ray_init(t_ray *ray, t_plr plr, int x)
+{
+	ray->camerax = (float)(2 * x) / WIDTH - 1;
+	ray->ray_r = plr.angle;
+	ray->plane_x = 0.66 * sin(ray->ray_r);
+	ray->plane_y = -0.66 * cos(ray->ray_r);
+	ray->hit = 0;
+	ray->dirx = cos(ray->ray_r) + ray->plane_x * ray->camerax;
+	ray->diry = sin(ray->ray_r) + ray->plane_y * ray->camerax;
+	ray->mapx = (int)ray->posx;
+	ray->mapy = (int)ray->posy;
+	ray->ddistx = fabsf(1 /ray->dirx);
+	ray->ddisty = fabsf(1 /ray->diry);
 }
 
 void    ft_raycasting(t_all *all)
 {
-    int		x;
 	t_ray	ray;
 
-	// draw_map(all);
-	ray.posx = all->plr->x;
-	ray.posy = all->plr->y;
-	x = -1;
-	while (++x < WIDTH)
+	ray.pix_x = 1;
+	while (ray.pix_x < WIDTH)
 	{
-		ray.camerax = (2 * x) / (double)WIDTH - 1;
-		ray.dirx = all->plr->dir_x + all->plr->plane_x * ray.camerax;
-		ray.diry = all->plr->dir_y + all->plr->plane_y * ray.camerax;
-		ray.mapx = (int)ray.posx;
-		ray.mapy = (int)ray.posy;
-		ray.ddistx = sqrt(1 + pow(ray.diry, 2) / pow(ray.dirx, 2));
-		ray.ddisty = sqrt(1 + pow(ray.dirx, 2) / pow(ray.diry, 2));
-		cal_side_dist(&ray);
+		ray_init(&ray, all->plr, ray.pix_x);
+		cal_side_dist(&ray, all->plr);
 		hit_wall(all, &ray);
-		cal_dist_ray_to_perpwall(&ray);
-		cal_draw_start_end(&ray);
-		draw_line(all, &ray, x);
+		cal_draw_start_end(&ray, all);
+		draw_line(all, &ray, ray.pix_x);//
+		ray.pix_x++;
 	}
-	draw_player_dir(all);
 }

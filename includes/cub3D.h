@@ -30,13 +30,14 @@
 # define ARROW_DOWN 125
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
-# define MV_SPEED 0.03
+# define MV_SPEED 0.01
 # define ROT_SPEED 0.03
 # define W_KEY 13
 # define S_KEY 1
 # define A_KEY 0
 # define D_KEY 2
 # define KEY_ESC 53
+# define HITBOX 0.3
 # define SCALE 16 // условный размер каждого квадратика в карте
 
 typedef struct s_win //структура для окна
@@ -44,11 +45,22 @@ typedef struct s_win //структура для окна
 	void		*mlx;
 	void		*win;
 	void		*img;
-	void		*addr;
+	char		*addr;
 	int			line_length;
 	int			bits_per_pixel;
 	int			endian;
 }	t_win;
+
+typedef struct s_txt
+{
+	void		*img;
+	char		*addr;
+	int			line_length;
+	int			bits_per_pixel;
+	int			endian;
+	int			w;
+	int			h;
+}	t_txt;
 
 typedef struct s_point // структура для точки
 {
@@ -70,36 +82,49 @@ typedef struct s_plr //структура для игрока и луча
 	int			down;
 	int			left;
 	int			right;
+	float		angle;
 }	t_plr;
 
 typedef struct	s_ray
 {
-	double		posx;
-	double		posy;
+	float		posx;
+	float		posy;
 
-	double		dirx;
-	double		diry;
+	float		dirx;
+	float		diry;
 
-	double		sidedx;
-	double		sidedy;
+	float		sidedx;
+	float		sidedy;
 
-	double		ddistx;
-	double		ddisty;
+	float		ddistx;
+	float		ddisty;
 
-	double		walldist;
+	float		walldist;
 
 	int			side;
 
 	int			stepx;
 	int			stepy;
 
-	double		camerax;
+	float		camerax;
 
 	int			mapx;
 	int			mapy;
-	double		draw_start;
-	double		draw_end;
-
+	float		draw_start;
+	float		draw_end;
+	float		ray_r;
+	float	plane_x;
+	float	plane_y;
+	int		hit;
+	int		line_height;
+	float	wall_x;
+	int		tex;
+	float	tex_stepy;
+	float	tex_stepx;
+	float	tex_pos;
+	int		tex_x;
+	int		tex_y;
+	int		pix_x;
 }				t_ray;
 
 typedef struct	s_draw
@@ -123,8 +148,9 @@ typedef struct	s_draw
 
 typedef struct s_all // структура для всего вместе
 {
-	t_win		*win;
-	t_plr		*plr;
+	t_win		win;
+	t_plr		plr;
+	t_txt		txt[6];
 	char		**map;
 	int			colorsky;
 	int			colorground;
@@ -133,20 +159,21 @@ typedef struct s_all // структура для всего вместе
 	int			color_north;
 	int			color_south;
 }	t_all;
-//main
-void	ft_scale_img(t_point point, t_all *all, int color);
-void	test_parser(t_all *all);
-// void	draw_screen(t_all *all);
+void	test_parser(char *av1, t_all *all);
+//init
+void	init_all(t_all *all);
 //gnl
 int		get_next_line(int fd, char **line);
+//mlx_utils
+unsigned int	get_texture_color(t_txt txt, t_point point);
+void	my_mlx_pixel_put(t_win img, t_point point, int color);
+int		loop_hook(t_all *all);
+
 //hooks
 int		ft_exit(t_all *all);
 int		keyboard_hook(int keycode, t_all *all);
 //utils
 void	ft_errors(char *error_str);
-//mlx_utils
-void	my_mlx_pixel_put(t_all *all, t_point point, int color);
-int		loop_hook(t_all *all);
 //raycasting
 void    ft_raycasting(t_all *all);
 //ray
@@ -158,7 +185,5 @@ void	move_up(t_all *all);
 void	move_down(t_all *all);
 void	move_right(t_all *all);
 void	move_left(t_all *all);
-//init
-t_all	*init_all(void);
 
 #endif

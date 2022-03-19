@@ -12,31 +12,10 @@
 
 #include "cub3D.h"
 
-// static int	ft_move(int keycode, t_all *all)
-// {
-// 	mlx_clear_window(all->win->mlx, all->win->win);
-// 	if (keycode == W_KEY)
-// 	{
-// 		all->plr->y += sin(all->plr->dir) * 4;
-// 		all->plr->x += cos(all->plr->dir) * 4;
-// 	}
-// 	if (keycode == S_KEY)
-// 	{
-// 		all->plr->y -= sin(all->plr->dir) * 4;
-// 		all->plr->x -= cos(all->plr->dir) * 4;
-// 	}
-// 	if (keycode == 0)
-// 		all->plr->dir -= 0.1;
-// 	if (keycode == 2)
-// 		all->plr->dir += 0.1;
-// 	draw_screen(all);
-// 	return (0);
-// }
-
 int	ft_exit(t_all *all)
 {
-	mlx_destroy_image(all->win->mlx, all->win->img);
-	mlx_destroy_window(all->win->mlx, all->win->win);
+	mlx_destroy_image(all->win.mlx, all->win.img);
+	mlx_destroy_window(all->win.mlx, all->win.win);
 	exit (0);
 	return (0);
 }
@@ -44,17 +23,13 @@ int	ft_exit(t_all *all)
 static int	ft_move(int keycode, t_all *all)
 {
 	if (keycode == W_KEY)
-		all->plr->up = !all->plr->up;
+		all->plr.up = !all->plr.up;
 	if (keycode == S_KEY)
-		all->plr->down = !all->plr->down;
+		all->plr.down = !all->plr.down;
 	if (keycode == A_KEY)
-		all->plr->left = !all->plr->left;
+		all->plr.left = !all->plr.left;
 	if (keycode == D_KEY)
-		all->plr->right = !all->plr->right;
-	// mlx_destroy_image(all->win->mlx, all->win->img);
-	// mlx_clear_window(all->win->mlx, all->win->win);
-	// draw_screen(all);
-	// printf("here\n");
+		all->plr.right = !all->plr.right;
 	return (0);
 }
 

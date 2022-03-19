@@ -11,7 +11,7 @@ LIBFT_DIRECTORY = ./libft/
 LIBFT_HEADERS = $(LIBFT_DIRECTORY)
 
 MINILIBX = $(MINILIBX_DIRECTORY)libmlx.a
-MINILIBX_DIRECTORY = ./minilibx_opengl_20191021/
+MINILIBX_DIRECTORY = ./mlx/
 MINILIBX_HEADERS = $(MINILIBX_DIRECTORY)
 
 HEADERS_DIRECTORY = ./includes/
@@ -19,8 +19,8 @@ HEADERS_LIST = cub3D.h
 HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIRECTORY = ./src/
-SRCS_LIST	= cub3D.c get_next_line.c hook.c utils.c mlx_utils.c raycasting.c draw.c ray.c\
-				moves.c init.c
+SRCS_LIST	= cub3D.c get_next_line.c init.c test_parser.c hook.c utils.c mlx_utils.c raycasting.c draw.c\
+				moves.c
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
 OBJS_DIRECTORY = objects/
@@ -30,7 +30,7 @@ OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 CC			= gcc
 
 # CFLAGS	= -Wall -Wextra -Werror -O3
-CFLAGS	= -O3 -g
+CFLAGS	= -g
 
 all:		${NAME}
 
