@@ -6,12 +6,13 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/11 14:10:53 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/11 16:27:09 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/16 19:14:20 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+<<<<<<< HEAD
 unsigned int	get_texture_color(t_txt txt, t_point point)
 {
 	char			*dst;
@@ -23,6 +24,17 @@ unsigned int	get_texture_color(t_txt txt, t_point point)
 }
 
 void	my_mlx_pixel_put(t_win img, t_point point, int color)
+=======
+void	fill_pixel(char **img, t_point pixel, int color)
+{
+	if (pixel.x < WIDTH && pixel.y < HEIGHT && pixel.x >= 0 && pixel.y >= 0)
+	{
+		((int*)*img)[pixel.x + (pixel.y * WIDTH)] = color;
+	}
+}
+
+void	my_mlx_pixel_put(t_all *all, t_point point, int color)
+>>>>>>> 5a7d78122034e1fa7b31cc18bd870bd12670d18f
 {
 	char	*dst;
 

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/11 17:19:19 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/16 17:05:18 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@
 # include <fcntl.h>
 # include "mlx.h"
 # include "../libft/libft.h"
-# define WIDTH 1000
-# define HEIGHT 1000
+# define WIDTH 800
+# define HEIGHT 600
 # define MINI_MAPW 160
 # define MINI_MAPH 160
 # define SQUARE_MAP_SIZE 20
@@ -174,6 +174,13 @@ int		ft_exit(t_all *all);
 int		keyboard_hook(int keycode, t_all *all);
 //utils
 void	ft_errors(char *error_str);
+<<<<<<< HEAD
+=======
+//mlx_utils
+void	fill_pixel(char **img, t_point pixel, int color);
+void	my_mlx_pixel_put(t_all *all, t_point point, int color);
+int		loop_hook(t_all *all);
+>>>>>>> 5a7d78122034e1fa7b31cc18bd870bd12670d18f
 //raycasting
 void    ft_raycasting(t_all *all);
 //ray

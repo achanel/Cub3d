@@ -1,6 +1,20 @@
 #include "cub3D.h"
 
+<<<<<<< HEAD
 static void	cal_side_dist(t_ray *ray, t_plr plr)
+=======
+// void		draw_player_dir(t_all *all)
+// {
+// 	double rayx;
+// 	double rayy;
+
+// 	rayx = all->plr->x + all->plr->dir_x;
+// 	rayy = all->plr->y + all->plr->dir_y;
+// 	draw_ray(all, rayx, rayy, 0x00ff00);
+// }
+
+static void	cal_side_dist(t_ray *ray)
+>>>>>>> 5a7d78122034e1fa7b31cc18bd870bd12670d18f
 {
 	if (ray->dirx < 0)
 	{
@@ -103,4 +117,8 @@ void    ft_raycasting(t_all *all)
 		draw_line(all, &ray, ray.pix_x);//
 		ray.pix_x++;
 	}
+<<<<<<< HEAD
+=======
+	// draw_player_dir(all);
+>>>>>>> 5a7d78122034e1fa7b31cc18bd870bd12670d18f
 }
