@@ -14,7 +14,7 @@
 
 int	ft_exit(t_all *all)
 {
-	mlx_destroy_image(all->win.mlx, all->win.img);
+	mlx_destroy_image(all->win.mlx, all->display.img);
 	mlx_destroy_window(all->win.mlx, all->win.win);
 	exit (0);
 	return (0);

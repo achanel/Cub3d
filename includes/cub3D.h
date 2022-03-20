@@ -44,14 +44,9 @@ typedef struct s_win //структура для окна
 {
 	void		*mlx;
 	void		*win;
-	void		*img;
-	char		*addr;
-	int			line_length;
-	int			bits_per_pixel;
-	int			endian;
 }	t_win;
 
-typedef struct s_txt
+typedef struct s_img
 {
 	void		*img;
 	char		*addr;
@@ -60,7 +55,7 @@ typedef struct s_txt
 	int			endian;
 	int			w;
 	int			h;
-}	t_txt;
+}	t_img;
 
 typedef struct s_point // структура для точки
 {
@@ -150,7 +145,8 @@ typedef struct s_all // структура для всего вместе
 {
 	t_win		win;
 	t_plr		plr;
-	t_txt		txt[6];
+	t_img		txt[6];
+	t_img		display;
 	char		**map;
 	int			colorsky;
 	int			colorground;
@@ -165,8 +161,8 @@ void	init_all(t_all *all);
 //gnl
 int		get_next_line(int fd, char **line);
 //mlx_utils
-unsigned int	get_texture_color(t_txt txt, t_point point);
-void	my_mlx_pixel_put(t_win img, t_point point, int color);
+unsigned int	get_texture_color(t_img txt, t_point point);
+void	my_mlx_pixel_put(t_img img, t_point point, int color);
 int		loop_hook(t_all *all);
 
 //hooks
@@ -174,13 +170,6 @@ int		ft_exit(t_all *all);
 int		keyboard_hook(int keycode, t_all *all);
 //utils
 void	ft_errors(char *error_str);
-<<<<<<< HEAD
-=======
-//mlx_utils
-void	fill_pixel(char **img, t_point pixel, int color);
-void	my_mlx_pixel_put(t_all *all, t_point point, int color);
-int		loop_hook(t_all *all);
->>>>>>> 5a7d78122034e1fa7b31cc18bd870bd12670d18f
 //raycasting
 void    ft_raycasting(t_all *all);
 //ray

@@ -2,8 +2,7 @@
 
 void	add_img(char *texture, t_all *all, int index)
 {
-	t_txt	img;
-	int		*w = 64;
+	t_img	img;
 
 	img = all->txt[index];
 	img.img = mlx_xpm_file_to_image(all->win.mlx, texture, &img.w, &img.h);
@@ -11,9 +10,9 @@ void	add_img(char *texture, t_all *all, int index)
 	all->txt[index] = img;
 }
 
-void	add_rgb(char *texture, t_all *all, char index)
+void	add_rgb(char *texture, t_all *all, int index)
 {
-	t_txt	img;
+	t_img	img;
 	t_point	p;
 
 	p.y = 0;
@@ -23,21 +22,21 @@ void	add_rgb(char *texture, t_all *all, char index)
 	img.w = 1;
 	img.addr = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel, &img.line_length, &img.endian);
-	if (index == 'F')
-		my_mlx_pixel_put(all->win, p, 0x340707);//chok
+	if (index == '0')
+		my_mlx_pixel_put(img, p, 0x340707);//chok
 	else
-		my_mlx_pixel_put(all->win, p, 0x00FFFF);//cian
+		my_mlx_pixel_put(img, p, 0x00FFFF);//cian
 	all->txt[index] = img;
 }
 
 void	make_txt(t_all *all)
 {
-	add_rgb(NULL, all, 'F'); //F
-	add_rgb(NULL, all, 'C'); //C
-	add_img("../txt/EastBluegreyL.xpm", all, 0); //EA
-	add_img("../txt/WestWoodbrickL.xpm", all, 1); //WE
-	add_img("../txt/NorthMetallic.xpm", all, 2); //NO
-	add_img("../txt/SouthMultibrickL.xpm", all, 3); // SO
+	add_rgb(NULL, all, 0); //F
+	add_rgb(NULL, all, 1); //C
+	add_img("./txt/NorthMetallic.xpm", all, 1); //NO
+	add_img("./txt/SouthMultibrickL.xpm", all, 2); // SO
+	add_img("./txt/WestWoodbrickL.xpm", all, 3); //WE
+	add_img("./txt/EastBluegreyL.xpm", all, 4); //EA
 }
 
 void	player_data(char c, t_all *all, int i, int j)
@@ -99,8 +98,8 @@ void	make_map(t_all *all, t_list **head, int size)
 		tmp = tmp->next;
 	}
 	i = -1;
-	// while (all->map[++i])
-	// 	ft_putendl_fd(all->map[i], 1);
+	while (all->map[++i])
+		ft_putendl_fd(all->map[i], 1);
 	// return (all->map);
 }
 

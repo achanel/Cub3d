@@ -5,6 +5,7 @@ void	move_up(t_all *all)
 	float	y;
 	float	x;
 
+	printf("wwwww\n");
 	y = all->plr.y;
 	x = all->plr.x;
 	if (sin(all->plr.angle * -1) < 0 && all->map[(int)(y - HITBOX)][(int)x] != '1')
@@ -22,6 +23,7 @@ void	move_down(t_all *all)
 	float	y;
 	float	x;
 
+	printf("ssss\n");
 	y = all->plr.y;
 	x = all->plr.x;
 	if (sin(all->plr.angle) < 0 && all->map[(int)(y - HITBOX)][(int)x] != '1')
@@ -36,6 +38,7 @@ void	move_down(t_all *all)
 
 void	move_right(t_all *all)
 {
+	printf("ddd\n");
 	all->plr.angle -= ROT_SPEED;
 	if (all->plr.angle > 2 * M_PI)
 		all->plr.angle -= 2 * M_PI;
