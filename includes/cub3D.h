@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/16 17:05:18 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/22 15:09:52 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define ARROW_DOWN 125
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
-# define MV_SPEED 0.01
+# define MV_SPEED 0.05
 # define ROT_SPEED 0.03
 # define W_KEY 13
 # define S_KEY 1
@@ -77,10 +77,12 @@ typedef struct s_plr //структура для игрока и луча
 	int			down;
 	int			left;
 	int			right;
+	int			spin_l;
+	int			spin_r;
 	float		angle;
 }	t_plr;
 
-typedef struct	s_ray
+typedef struct s_ray
 {
 	float		posx;
 	float		posy;
@@ -108,38 +110,19 @@ typedef struct	s_ray
 	float		draw_start;
 	float		draw_end;
 	float		ray_r;
-	float	plane_x;
-	float	plane_y;
-	int		hit;
-	int		line_height;
-	float	wall_x;
-	int		tex;
-	float	tex_stepy;
-	float	tex_stepx;
-	float	tex_pos;
-	int		tex_x;
-	int		tex_y;
-	int		pix_x;
+	float		plane_x;
+	float		plane_y;
+	int			hit;
+	int			line_height;
+	float		wall_x;
+	int			tex;
+	float		tex_stepy;
+	float		tex_stepx;
+	float		tex_pos;
+	int			tex_x;
+	int			tex_y;
+	int			pix_x;
 }				t_ray;
-
-typedef struct	s_draw
-{
-	int			color;
-	int			zi;
-	int			zf;
-	int			xi;
-	int			yi;
-	int			xf;
-	int			yf;
-	int			dx;
-	int			dy;
-	int			xinc;
-	int			yinc;
-	int			decalx;
-	int			decaly;
-	int			offsetx;
-	int			offsety;
-}				t_draw;
 
 typedef struct s_all // структура для всего вместе
 {
@@ -148,38 +131,22 @@ typedef struct s_all // структура для всего вместе
 	t_img		txt[6];
 	t_img		display;
 	char		**map;
-	int			colorsky;
-	int			colorground;
-	int			color_east;
-	int			color_west;
-	int			color_north;
-	int			color_south;
 }	t_all;
-void	test_parser(char *av1, t_all *all);
-//init
-void	init_all(t_all *all);
-//gnl
-int		get_next_line(int fd, char **line);
-//mlx_utils
-unsigned int	get_texture_color(t_img txt, t_point point);
-void	my_mlx_pixel_put(t_img img, t_point point, int color);
-int		loop_hook(t_all *all);
-
-//hooks
-int		ft_exit(t_all *all);
-int		keyboard_hook(int keycode, t_all *all);
-//utils
-void	ft_errors(char *error_str);
-//raycasting
-void    ft_raycasting(t_all *all);
-//ray
-void		draw_ray(t_all *all, double xf, double yf, int color);
+//test
+void			test_parser(char *av1, t_all *all);
+int				get_next_line(int fd, char **line);
 //draw
-void		draw_line(t_all *all, t_ray *ray, int x);
+void			draw_line(t_all *all, t_ray *ray, int x);
+//hook
+int				ft_exit(t_all *all);
+int				keyboard_hook(int keycode, t_all *all);
+int				loop_hook(t_all *all);
 //moves
-void	move_up(t_all *all);
-void	move_down(t_all *all);
-void	move_right(t_all *all);
-void	move_left(t_all *all);
-
+void			move_spin(t_all *all);
+//raycasting
+void    		ft_raycasting(t_all *all);
+//utils
+void			ft_errors(char *error_str);
+unsigned int	get_texture_color(t_img txt, t_point point);
+void			my_mlx_pixel_put(t_img img, t_point point, int color);
 #endif

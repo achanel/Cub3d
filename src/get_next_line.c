@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/22 14:45:15 by achanel           #+#    #+#             */
+/*   Updated: 2022/03/22 14:48:45 by achanel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
 static char	*end_line(int fd, char **buf_gl)
@@ -85,7 +97,6 @@ int	get_next_line(int fd, char **line)
 		if (trim > -1)
 			return (bwr);
 	}
-	// printf("%s\n", buf_gl[fd]);
 	free(buf_gl[fd]);
 	buf_gl[fd] = NULL;
 	return (-1);
