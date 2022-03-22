@@ -47,7 +47,7 @@ $(LIBFT):
 			@$(MAKE) -sC $(LIBFT_DIRECTORY)
 
 $(MINILIBX):
-			@$(MAKE) -sC $(MINILIBX_DIRECTORY)
+			@$(MAKE) -sC $(MINILIBX_DIRECTORY) 2>/dev/null
 		
 
 clean:
