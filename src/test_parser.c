@@ -22,10 +22,10 @@ void	add_rgb(t_all *all, int index)
 	img.w = 1;
 	img.addr = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel, &img.line_length, &img.endian);
-	if (index == 0)
-		my_mlx_pixel_put(img, p, 0x340707);//chok
-	else
-		my_mlx_pixel_put(img, p, 0x00FFFF);//cian
+	// if (index == 0)
+	// 	my_mlx_pixel_put(img, p, 0x340707);//chok
+	// else
+	// 	my_mlx_pixel_put(img, p, 0x00FFFF);//cian
 	all->txt[index] = img;
 }
 

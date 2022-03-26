@@ -26,7 +26,9 @@ unsigned int	get_texture_color(t_img txt, t_point point)
 void	my_mlx_pixel_put(t_img img, t_point point, int color)
 {
 	char	*dst;
-
+	
+	if (point.x < MINI_MAP && point.y < MINI_MAP / 2)
+		return ;
 	dst = img.addr + (point.y * img.line_length
 			+ point.x * (img.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;

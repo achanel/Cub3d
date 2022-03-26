@@ -22,6 +22,11 @@ static int	key_catcher(int keycode)
 
 int	ft_exit(t_all *all)
 {
+	int	i;
+
+	i = -1;
+	while (++i < 6)
+		mlx_destroy_image(all->win.mlx, all->txt[i].img);
 	mlx_destroy_image(all->win.mlx, all->display.img);
 	mlx_destroy_window(all->win.mlx, all->win.win);
 	exit (0);

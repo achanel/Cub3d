@@ -20,7 +20,7 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIRECTORY = ./src/
 SRCS_LIST	= cub3D.c get_next_line.c test_parser.c hook.c utils.c raycasting.c draw.c\
-				moves.c
+				moves.c mini_map.c
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))
 
 OBJS_DIRECTORY = objects/
@@ -51,15 +51,21 @@ $(MINILIBX):
 		
 
 clean:
-			@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
-			@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
 			@rm -rf $(OBJS_DIRECTORY)
 
 fclean:		clean
-			@rm -f $(LIBFT)
-			@rm -f $(MINILIBX)
 			@rm -f $(NAME)
 
 re:			fclean all
 
 .PHONY:		all clean fclean re bonus
+
+# clean:
+# 			@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
+# 			@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
+# 			@rm -rf $(OBJS_DIRECTORY)
+
+# fclean:		clean
+# 			@rm -f $(LIBFT)
+# 			@rm -f $(MINILIBX)
+# 			@rm -f $(NAME)

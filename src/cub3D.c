@@ -15,7 +15,11 @@
 void	init_mlx(t_all *all)
 {
 	all->win.mlx = mlx_init();
+	if (!all->win.mlx)
+		ft_errors("Error: mlx init\n");
 	all->win.win = mlx_new_window(all->win.mlx, WIDTH, HEIGHT, "cub3D");
+	if (!all->win.win)
+		ft_errors("Error: mlx window init\n");
 }
 
 void	init_txt(t_all *all)
@@ -26,6 +30,11 @@ void	init_txt(t_all *all)
 	while (++i < 6)
 		all->txt[i].img = NULL;
 	all->display.img = mlx_new_image(all->win.mlx, WIDTH, HEIGHT);
+	if (!all->display.img)
+	{
+		mlx_destroy_window(all->win.mlx, all->win.win);
+		ft_errors("Error: image init\n");
+	}
 	all->display.addr = mlx_get_data_addr(all->display.img,
 			&all->display.bits_per_pixel, &all->display.line_length,
 			&all->display.endian);

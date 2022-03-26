@@ -108,6 +108,7 @@ void	ft_raycasting(t_all *all)
 {
 	t_ray	ray;
 
+	draw_mini_map(all);
 	ray.pix_x = 1;
 	while (ray.pix_x < WIDTH)
 	{

@@ -22,12 +22,11 @@
 # include "../libft/libft.h"
 # define WIDTH 800
 # define HEIGHT 600
-# define MINI_MAPW 160
-# define MINI_MAPH 160
-# define SQUARE_MAP_SIZE 20
+# define MINI_MAP 300
+// # define SQUARE_MAP_SIZE 20
 # define BUFFER_SIZE 1000
-# define ARROW_UP 126
-# define ARROW_DOWN 125
+// # define ARROW_UP 126
+// # define ARROW_DOWN 125
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 # define MV_SPEED 0.05
@@ -38,7 +37,7 @@
 # define D_KEY 2
 # define KEY_ESC 53
 # define HITBOX 0.3
-# define SCALE 16 // условный размер каждого квадратика в карте
+// # define SCALE 16 // условный размер каждого квадратика в карте
 
 typedef struct s_win //структура для окна
 {
@@ -149,4 +148,6 @@ void    		ft_raycasting(t_all *all);
 void			ft_errors(char *error_str);
 unsigned int	get_texture_color(t_img txt, t_point point);
 void			my_mlx_pixel_put(t_img img, t_point point, int color);
+//mini_map
+void	draw_mini_map(t_all *all);
 #endif
