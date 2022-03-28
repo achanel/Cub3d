@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/22 15:09:52 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/28 15:22:32 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,14 @@
 # include <unistd.h>
 # include <stdio.h>
 # include <math.h>
-# include <errno.h>
-# include <stdlib.h>
 # include <fcntl.h>
 # include "mlx.h"
 # include "../libft/libft.h"
 # define WIDTH 800
 # define HEIGHT 600
-# define MINI_MAP 300
+# define MINI_MAP 150
 // # define SQUARE_MAP_SIZE 20
 # define BUFFER_SIZE 1000
-// # define ARROW_UP 126
-// # define ARROW_DOWN 125
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 # define MV_SPEED 0.05
@@ -37,7 +33,7 @@
 # define D_KEY 2
 # define KEY_ESC 53
 # define HITBOX 0.3
-// # define SCALE 16 // условный размер каждого квадратика в карте
+# define MOUSE 0.00065
 
 typedef struct s_win //структура для окна
 {
@@ -125,11 +121,12 @@ typedef struct s_ray
 
 typedef struct s_all // структура для всего вместе
 {
-	t_win		win;
-	t_plr		plr;
-	t_img		txt[6];
-	t_img		display;
-	char		**map;
+	t_win	win;
+	t_plr	plr;
+	t_img	txt[6];
+	t_img	display;
+	char	**map;
+	int		mouse_x;	
 }	t_all;
 //test
 void			test_parser(char *av1, t_all *all);
@@ -150,4 +147,6 @@ unsigned int	get_texture_color(t_img txt, t_point point);
 void			my_mlx_pixel_put(t_img img, t_point point, int color);
 //mini_map
 void	draw_mini_map(t_all *all);
+//mouse_move
+int	mouse_move(int x, int y, t_all *all);
 #endif
