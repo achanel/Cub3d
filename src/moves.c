@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:49:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/22 14:57:01 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/28 14:07:00 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,22 +29,18 @@ static void	move(float pl_cos, float pl_sin, t_all *all)
 		all->plr.x += cos(pl_cos) * MV_SPEED;
 }
 
-static void	spin_right(t_all *all)
+void	spin(t_all *all)
 {
-	all->plr.angle -= ROT_SPEED;
+	if (all->plr.spin_l)
+		all->plr.angle += ROT_SPEED;
+	if (all->plr.spin_r)
+		all->plr.angle -= ROT_SPEED;
 	if (all->plr.angle > 2 * M_PI)
 		all->plr.angle -= 2 * M_PI;
 	else if (all->plr.angle < 0)
 		all->plr.angle += 2 * M_PI;
-}
-
-static void	spin_left(t_all *all)
-{
-	all->plr.angle += ROT_SPEED;
-	if (all->plr.angle > 2 * M_PI)
-		all->plr.angle -= 2 * M_PI;
-	else if (all->plr.angle < 0)
-		all->plr.angle += 2 * M_PI;
+	all->plr.angle -= (all->mouse_x - WIDTH / 2) * MOUSE;
+	all->mouse_x = WIDTH / 2;
 }
 
 void	move_spin(t_all *all)
@@ -57,8 +53,5 @@ void	move_spin(t_all *all)
 		move(all->plr.angle + M_PI_2, all->plr.angle - M_PI_2, all);
 	if (all->plr.right)
 		move(all->plr.angle - M_PI_2, all->plr.angle + M_PI_2, all);
-	if (all->plr.spin_l)
-		spin_left(all);
-	if (all->plr.spin_r)
-		spin_right(all);
+	spin(all);
 }

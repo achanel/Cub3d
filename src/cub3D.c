@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:14:51 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/22 15:02:13 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/28 14:15:35 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	init_all(t_all *all)
 	init_mlx(all);
 	init_txt(all);
 	all->map = NULL;
+	all->mouse_x = WIDTH / 2;
 }
 
 int	main(int ac, char **av)
@@ -58,6 +59,7 @@ int	main(int ac, char **av)
 	mlx_do_key_autorepeatoff(all.win.mlx);
 	mlx_key_hook(all.win.win, keyboard_hook, &all);
 	mlx_hook(all.win.win, 2, 1L << 0, keyboard_hook, &all);
+	mlx_hook(all.win.win, 6, 0, mouse_move, &all);
 	mlx_hook(all.win.win, 17, 18, ft_exit, &all);
 	mlx_loop_hook(all.win.mlx, loop_hook, &all);
 	mlx_loop(all.win.mlx);

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:49:31 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/22 14:57:38 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/28 15:43:59 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,4 +119,5 @@ void	ft_raycasting(t_all *all)
 		draw_line(all, &ray, ray.pix_x);
 		ray.pix_x++;
 	}
+	// draw_player(all);
 }
