@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strtrim.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/30 17:33:06 by achanel           #+#    #+#             */
+/*   Updated: 2022/03/30 17:36:44 by achanel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "libft.h"
 
-static unsigned int	checker (const char *str, char c)
+static unsigned int	checker(const char *str, char c)
 {
 	int	i;
 

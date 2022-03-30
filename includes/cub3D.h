@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/30 17:11:44 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:28:45 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,6 @@ typedef struct s_map
 	int	y_end;
 }	t_map;
 
-
 typedef struct s_all // структура для всего вместе
 {
 	t_win	win;
@@ -150,7 +149,7 @@ int				loop_hook(t_all *all);
 //moves
 void			move_spin(t_all *all);
 //raycasting
-void    		ft_raycasting(t_all *all);
+void			ft_raycasting(t_all *all);
 //utils
 void			ft_errors(char *error_str);
 unsigned int	get_texture_color(t_img txt, t_point point);

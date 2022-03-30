@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:37:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/30 17:13:00 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:39:18 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,7 @@ unsigned int	get_texture_color(t_img txt, t_point point)
 void	my_mlx_pixel_put(t_img img, t_point point, int color)
 {
 	char	*dst;
-	
-	// if (point.x < MINI_MAP * 2 && point.y < MINI_MAP * 2)
-	// 	return ;
+
 	dst = img.addr + (point.y * img.line_length
 			+ point.x * (img.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;
