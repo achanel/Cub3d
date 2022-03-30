@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 12:53:44 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/30 17:47:03 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/30 18:14:58 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ static void	draw_plr(t_all *all, int scale)
 	plr.x = all->plr.x;
 	plr.y = all->plr.y;
 	ft_scale_img(plr, all, 0xFF0000, scale);
+	draw_lov(plr, all);
 }
 
 void	draw_mini_map(t_all *all)

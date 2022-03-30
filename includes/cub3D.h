@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/30 17:28:45 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/30 18:16:17 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,4 +158,6 @@ void			my_mlx_pixel_put(t_img img, t_point point, int color);
 void			draw_mini_map(t_all *all);
 //mouse_move
 int				mouse_move(int x, int y, t_all *all);
+//draw_lov
+void	draw_lov(t_point plr, t_all *all);
 #endif
