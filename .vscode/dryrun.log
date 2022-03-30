@@ -1,13 +1,15 @@
-make --dry-run --keep-going --print-directory
-make: Entering directory `/Users/macintosh/Desktop/Cub3d'
-/Library/Developer/CommandLineTools/usr/bin/make -sC ./libft/
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory `/Users/achanel/Desktop/xxx'
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -sC ./libft/
  
-make[1]: Entering directory `/Users/macintosh/Desktop/Cub3d/libft'
+make[1]: Entering directory `/Users/achanel/Desktop/xxx/libft'
 gcc -Wall -Wextra -Werror -g -c ft_memset.c -o ft_memset.o
+ 
 gcc -Wall -Wextra -Werror -g -c ft_bzero.c -o ft_bzero.o
 gcc -Wall -Wextra -Werror -g -c ft_memcpy.c -o ft_memcpy.o
 gcc -Wall -Wextra -Werror -g -c ft_memccpy.c -o ft_memccpy.o
 gcc -Wall -Wextra -Werror -g -c ft_memmove.c -o ft_memmove.o
+ 
 gcc -Wall -Wextra -Werror -g -c ft_memchr.c -o ft_memchr.o
 gcc -Wall -Wextra -Werror -g -c ft_memcmp.c -o ft_memcmp.o
 gcc -Wall -Wextra -Werror -g -c ft_strlen.c -o ft_strlen.o
@@ -17,109 +19,64 @@ gcc -Wall -Wextra -Werror -g -c ft_strchr.c -o ft_strchr.o
 gcc -Wall -Wextra -Werror -g -c ft_strrchr.c -o ft_strrchr.o
 gcc -Wall -Wextra -Werror -g -c ft_strnstr.c -o ft_strnstr.o
 gcc -Wall -Wextra -Werror -g -c ft_strncmp.c -o ft_strncmp.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_atoi.c -o ft_atoi.o
 gcc -Wall -Wextra -Werror -g -c ft_isalpha.c -o ft_isalpha.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_isdigit.c -o ft_isdigit.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_isalnum.c -o ft_isalnum.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_isascii.c -o ft_isascii.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_isprint.c -o ft_isprint.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_toupper.c -o ft_toupper.o
 gcc -Wall -Wextra -Werror -g -c ft_tolower.c -o ft_tolower.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_calloc.c -o ft_calloc.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_strdup.c -o ft_strdup.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_substr.c -o ft_substr.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_strjoin.c -o ft_strjoin.o
 gcc -Wall -Wextra -Werror -g -c ft_strtrim.c -o ft_strtrim.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_itoa.c -o ft_itoa.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_strmapi.c -o ft_strmapi.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_putchar_fd.c -o ft_putchar_fd.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_putstr_fd.c -o ft_putstr_fd.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_putendl_fd.c -o ft_putendl_fd.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_putnbr_fd.c -o ft_putnbr_fd.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_split.c -o ft_split.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_atof.c -o ft_atof.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_lstnew.c -o ft_lstnew.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_lstadd_front.c -o ft_lstadd_front.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_lstsize.c -o ft_lstsize.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_lstlast.c -o ft_lstlast.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_lstadd_back.c -o ft_lstadd_back.o
 gcc -Wall -Wextra -Werror -g -c ft_lstdelone.c -o ft_lstdelone.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_lstclear.c -o ft_lstclear.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_lstiter.c -o ft_lstiter.o
- 
 gcc -Wall -Wextra -Werror -g -c ft_lstmap.c -o ft_lstmap.o
 gcc -Wall -Wextra -Werror -g -c ft_strnew.c -o ft_strnew.o
- 
 ar rcs libft.a ft_memset.o ft_bzero.o ft_memcpy.o ft_memccpy.o ft_memmove.o ft_memchr.o ft_memcmp.o ft_strlen.o ft_strlcpy.o ft_strlcat.o ft_strchr.o ft_strrchr.o ft_strnstr.o ft_strncmp.o ft_atoi.o ft_isalpha.o ft_isdigit.o ft_isalnum.o ft_isascii.o ft_isprint.o ft_toupper.o ft_tolower.o ft_calloc.o ft_strdup.o ft_substr.o ft_strjoin.o ft_strtrim.o ft_itoa.o ft_strmapi.o ft_putchar_fd.o ft_putstr_fd.o ft_putendl_fd.o ft_putnbr_fd.o ft_split.o ft_atof.o ft_lstnew.o ft_lstadd_front.o ft_lstsize.o ft_lstlast.o ft_lstadd_back.o ft_lstdelone.o ft_lstclear.o ft_lstiter.o ft_lstmap.o ft_strnew.o
-make[1]: Leaving directory `/Users/macintosh/Desktop/Cub3d/libft'
+make[1]: Leaving directory `/Users/achanel/Desktop/xxx/libft'
+/Applications/Xcode.app/Contents/Developer/usr/bin/make -sC ./mlx/ 2>/dev/null
  
-/Library/Developer/CommandLineTools/usr/bin/make -sC ./mlx/
- 
-make[1]: Entering directory `/Users/macintosh/Desktop/Cub3d/mlx'
+make[1]: Entering directory `/Users/achanel/Desktop/xxx/mlx'
 cc -O2 -DSTRINGPUTX11   -c -o mlx_shaders.o mlx_shaders.c
- 
 cc -O2 -DSTRINGPUTX11   -c -o mlx_new_window.o mlx_new_window.m
- 
 cc -O2 -DSTRINGPUTX11   -c -o mlx_init_loop.o mlx_init_loop.m
- 
 cc -O2 -DSTRINGPUTX11   -c -o mlx_new_image.o mlx_new_image.m
- 
 cc -O2 -DSTRINGPUTX11   -c -o mlx_xpm.o mlx_xpm.c
- 
 cc -O2 -DSTRINGPUTX11   -c -o mlx_int_str_to_wordtab.o mlx_int_str_to_wordtab.c
 cc -O2 -DSTRINGPUTX11   -c -o mlx_png.o mlx_png.c
- 
 cc -O2 -DSTRINGPUTX11   -c -o mlx_mouse.o mlx_mouse.m
 ar -r libmlx.a mlx_shaders.o mlx_new_window.o mlx_init_loop.o mlx_new_image.o mlx_xpm.o mlx_int_str_to_wordtab.o mlx_png.o mlx_mouse.o
 ranlib libmlx.a
- 
-make[1]: Leaving directory `/Users/macintosh/Desktop/Cub3d/mlx'
- 
+make[1]: Leaving directory `/Users/achanel/Desktop/xxx/mlx'
 mkdir -p objects/
- 
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/cub3D.c -o objects/cub3D.o
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/get_next_line.c -o objects/get_next_line.o
- 
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/init.c -o objects/init.o
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/test_parser.c -o objects/test_parser.o
- 
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/hook.c -o objects/hook.o
- 
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/utils.c -o objects/utils.o
- 
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/mlx_utils.c -o objects/mlx_utils.o
- 
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/raycasting.c -o objects/raycasting.o
- 
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/draw.c -o objects/draw.o
- 
-gcc -g -c -I./includes/ -I./mlx/ -I./libft/ src/moves.c -o objects/moves.o
-gcc -g -lmlx -lm -lft -L./libft/ -L./mlx/ -framework OpenGL -framework AppKit -I./includes/ -I./mlx/ -I./libft/ objects/cub3D.o objects/get_next_line.o objects/init.o objects/test_parser.o objects/hook.o objects/utils.o objects/mlx_utils.o objects/raycasting.o objects/draw.o objects/moves.o -o cub3D
- 
-make: Leaving directory `/Users/macintosh/Desktop/Cub3d'
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/cub3D.c -o objects/cub3D.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/get_next_line.c -o objects/get_next_line.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/test_parser.c -o objects/test_parser.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/hook.c -o objects/hook.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/utils.c -o objects/utils.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/raycasting.c -o objects/raycasting.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/draw.c -o objects/draw.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/moves.c -o objects/moves.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/mini_map.c -o objects/mini_map.o
+gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/mouse.c -o objects/mouse.o
+gcc -Wall -Wextra -Werror -g3 -lmlx -lm -lft -L./libft/ -L./mlx/ -framework OpenGL -framework AppKit -I./includes/ -I./mlx/ -I./libft/ objects/cub3D.o objects/get_next_line.o objects/test_parser.o objects/hook.o objects/utils.o objects/raycasting.o objects/draw.o objects/moves.o objects/mini_map.o objects/mouse.o -o cub3D
+make: Leaving directory `/Users/achanel/Desktop/xxx'
  
