@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/28 15:22:32 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:11:44 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,12 +119,22 @@ typedef struct s_ray
 	int			pix_x;
 }				t_ray;
 
+typedef struct s_map
+{
+	int	x;
+	int	y;
+	int	x_end;
+	int	y_end;
+}	t_map;
+
+
 typedef struct s_all // структура для всего вместе
 {
 	t_win	win;
 	t_plr	plr;
 	t_img	txt[6];
 	t_img	display;
+	t_map	mini;
 	char	**map;
 	int		mouse_x;	
 }	t_all;
@@ -146,7 +156,7 @@ void			ft_errors(char *error_str);
 unsigned int	get_texture_color(t_img txt, t_point point);
 void			my_mlx_pixel_put(t_img img, t_point point, int color);
 //mini_map
-void	draw_mini_map(t_all *all);
+void			draw_mini_map(t_all *all);
 //mouse_move
-int	mouse_move(int x, int y, t_all *all);
+int				mouse_move(int x, int y, t_all *all);
 #endif

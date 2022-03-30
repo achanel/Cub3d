@@ -75,7 +75,7 @@ void	make_plr(t_all *all)
 			{
 				player_data(all->map[j][i], all, i, j);
 				// printf("%c\n", all->map[j][i]);
-				// all->map[j][i] = '0';
+				all->map[j][i] = '0';
 				return ;
 			}
 		}

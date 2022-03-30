@@ -6,72 +6,45 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 12:53:44 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/28 15:44:49 by achanel          ###   ########.fr       */
+/*   Updated: 2022/03/30 17:12:13 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-void	mini_map_pixel_put(t_img img, t_point point, int color)
-{
-	char	*dst;
-
-	if (point.x >= (WIDTH - MINI_MAP * 2) && point.y < MINI_MAP)
-	{
-		dst = img.addr + (point.y * img.line_length
-				+ point.x * (img.bits_per_pixel / 8));
-		*(unsigned int *)dst = color;
-	}
-	else
-		return ;
-}
-
 void	ft_scale_img(t_point point, t_all *all, int	color, int scale)
 {
-	t_point	end;
-
-	point.x += (800);
-	end.x = (point.x + 1) * scale;
-	end.y = (point.y + 1) * scale;
-	point.x *= scale;
-	point.y *= scale;
-	while (point.y < end.y)
-	{
-		while (point.x < end.x)
-		{
-			mini_map_pixel_put(all->display, point, color);
-			point.x++;
-		}
-		point.x -= scale;
-		point.y++;
-	}
-}
-
-void	draw_player(t_all *all)
-{
-	t_point i;
-	int		y_max;
-	int		x_max;
+	char	*dst;
 	
-	y_max = all->plr.y + 8;
-	i.y = all->plr.y - 8;
-	x_max = all->plr.x + 8 + WIDTH - MINI_MAP;
-	while (i.y < y_max)
+	all->mini.x = point.x * scale;
+	all->mini.y = point.y * scale;
+	all->mini.y_end = (point.y + 1) * scale;
+	all->mini.x_end = (point.x + 1) * scale;
+	while (all->mini.y < all->mini.y_end)
 	{
-		i.x = all->plr.x - 8 + WIDTH - MINI_MAP;
-		while (i.x < x_max)
+		while (all->mini.x < all->mini.x_end)
 		{
-			ft_scale_img(i, all, 0xFF0000, 8);
-			i.x++;
+			dst = all->display.addr + (all->mini.y * all->display.line_length
+					+ all->mini.x * (all->display.bits_per_pixel / 8));
+			*(unsigned int *)dst = color;
+			all->mini.x++;
 		}
-		i.y++;
+		all->mini.x -= scale;
+		all->mini.y++;
 	}
 }
 
 void	draw_mini_map(t_all *all)
 {
 	t_point	i;
-	
+	t_point plr;
+	int		scale;
+
+	scale = WIDTH / 150;
+	if (scale > 7)
+		scale = 7;
+	if (scale < 5)
+		scale = 5;
 	i.y = 0;
 	while (all->map[i.y])
 	{
@@ -79,14 +52,14 @@ void	draw_mini_map(t_all *all)
 		while (all->map[i.y][i.x])
 		{
 			if (all->map[i.y][i.x] == '1')
-				ft_scale_img(i, all, 0xFFFFFF, 8);
+				ft_scale_img(i, all, 0xFFFFFF, scale);
 			else if (all->map[i.y][i.x] == '0')
-				ft_scale_img(i, all, 0x000000, 8);
-			else if (all->map[i.y][i.x] == 'N')
-				ft_scale_img(i, all, 0xFF0000, 8);
+				ft_scale_img(i, all, 0x000000, scale);
 			i.x++;
 		}
 		i.y++;
 	}
-	draw_player(all);
+	plr.x = all->plr.x;
+	plr.y = all->plr.y;
+	ft_scale_img(plr, all, 0xFF0000, scale);
 }
