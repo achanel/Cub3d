@@ -21,7 +21,6 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define MINI_MAP 150
-// # define SQUARE_MAP_SIZE 20
 # define BUFFER_SIZE 1000
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
@@ -127,6 +126,24 @@ typedef struct s_map
 	int	y_end;
 }	t_map;
 
+typedef struct s_line
+{
+	int			color;
+	int			zi;
+	int			zf;
+	t_point		i;
+	int			xf;
+	int			yf;
+	int			dx;
+	int			dy;
+	int			xinc;
+	int			yinc;
+	int			decalx;
+	int			decaly;
+	int			offsetx;
+	int			offsety;
+}	t_line;
+
 typedef struct s_all // структура для всего вместе
 {
 	t_win	win;
@@ -158,6 +175,4 @@ void			my_mlx_pixel_put(t_img img, t_point point, int color);
 void			draw_mini_map(t_all *all);
 //mouse_move
 int				mouse_move(int x, int y, t_all *all);
-//draw_lov
-void	draw_lov(t_point plr, t_all *all);
 #endif

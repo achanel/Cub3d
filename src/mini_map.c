@@ -12,6 +12,32 @@
 
 #include "cub3D.h"
 
+void	draw_lov(t_point plr, t_all *all, int scale)
+{
+	float	bx;
+	float	by;
+	float	d;
+	float	pente;
+	t_point	lov;
+
+	bx = cos(all->plr.angle);
+	by = sin(all->plr.angle);
+	d = 0;
+	if (bx < 0.05 && bx > -0.05)
+		bx = 0.05;
+	pente = by / bx;
+	while (sqrtf(((d * pente) * (d * pente)) + d * d) <= scale * 3)
+	{
+		lov.y = plr.y * scale + -d * pente + 2;
+		lov.x = plr.x * scale + d + 2;
+		my_mlx_pixel_put(all->display, lov, 0x00FF00);
+		if (bx < 0)
+			d -= .1;
+		else
+			d += .1;
+	}
+}
+
 static void	ft_scale_img(t_point point, t_all *all, int color, int scale)
 {
 	char	*dst;
@@ -38,10 +64,10 @@ static void	draw_plr(t_all *all, int scale)
 {
 	t_point	plr;
 	
-	plr.x = all->plr.x;
-	plr.y = all->plr.y;
+	plr.x = all->plr.x + all->plr.dir_x;
+	plr.y = all->plr.y + all->plr.dir_y;
+	draw_lov(plr, all, scale);
 	ft_scale_img(plr, all, 0xFF0000, scale);
-	draw_lov(plr, all);
 }
 
 void	draw_mini_map(t_all *all)
