@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:49:31 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/30 17:24:06 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/01 13:59:40 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,13 +44,13 @@ static void	hit_wall(t_all *all, t_ray *ray)
 		{
 			ray->sidedy += ray->ddisty;
 			ray->mapy += ray->stepy;
-			ray->side = 1;//NO_SO
+			ray->side = NS;
 		}
 		else
 		{
 			ray->sidedx += ray->ddistx;
 			ray->mapx += ray->stepx;
-			ray->side = 0;//WE_EA
+			ray->side = WE;
 		}
 		if (all->map[ray->mapy][ray->mapx] == '1')
 			ray->hit = 1;
@@ -75,14 +75,14 @@ static void	cal_draw_start_end(t_ray *ray, t_all *all)
 	else
 		ray->wall_x = all->plr.y + ray->walldist * (ray->diry * -1);
 	ray->wall_x -= floor(ray->wall_x);
-	if (ray->side == 1 && ray->stepy == -1) //ns
-		ray->tex = 3;//s
+	if (ray->side == NS && ray->stepy == -1)
+		ray->tex = SOUTH;
 	else if (ray->side == 1)
-		ray->tex = 2;//n
-	else if (ray->side == 0 && ray->stepx == 1) //we
-		ray->tex = 4;//w
+		ray->tex = NORTH;
+	else if (ray->side == WE && ray->stepx == 1)
+		ray->tex = WEST;
 	else
-		ray->tex = 5;//e
+		ray->tex = EAST;
 	ray->tex_x = (int)(ray->wall_x * (float)all->txt[ray->tex].w);
 	ray->tex_stepy = (float)all->txt[ray->tex].h / ray->line_height;
 	ray->tex_pos = (ray->draw_start - HEIGHT / 2

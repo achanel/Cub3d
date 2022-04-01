@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/30 18:16:17 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:43:42 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # define WIDTH 800
 # define HEIGHT 600
 # define MINI_MAP 150
-# define BUFFER_SIZE 1000
+
 # define ARROW_LEFT 123
 # define ARROW_RIGHT 124
 # define MV_SPEED 0.05
@@ -30,11 +30,21 @@
 # define S_KEY 1
 # define A_KEY 0
 # define D_KEY 2
+# define P_KEY 35
 # define KEY_ESC 53
+
 # define HITBOX 0.3
 # define MOUSE 0.00065
+# define BUFFER_SIZE 1000
 
-typedef struct s_win //структура для окна
+# define WE 0
+# define NS 1
+# define NORTH 2
+# define SOUTH 3
+# define WEST 4
+# define EAST 5
+
+typedef struct s_win
 {
 	void		*mlx;
 	void		*win;
@@ -51,13 +61,13 @@ typedef struct s_img
 	int			h;
 }	t_img;
 
-typedef struct s_point // структура для точки
+typedef struct s_point
 {
 	int			x;
 	int			y;
 }	t_point;
 
-typedef struct s_plr //структура для игрока и луча
+typedef struct s_plr
 {
 	float		x;
 	float		y;
@@ -80,25 +90,17 @@ typedef struct s_ray
 {
 	float		posx;
 	float		posy;
-
 	float		dirx;
 	float		diry;
-
 	float		sidedx;
 	float		sidedy;
-
 	float		ddistx;
 	float		ddisty;
-
 	float		walldist;
-
 	int			side;
-
 	int			stepx;
 	int			stepy;
-
 	float		camerax;
-
 	int			mapx;
 	int			mapy;
 	float		draw_start;
@@ -126,25 +128,7 @@ typedef struct s_map
 	int	y_end;
 }	t_map;
 
-typedef struct s_line
-{
-	int			color;
-	int			zi;
-	int			zf;
-	t_point		i;
-	int			xf;
-	int			yf;
-	int			dx;
-	int			dy;
-	int			xinc;
-	int			yinc;
-	int			decalx;
-	int			decaly;
-	int			offsetx;
-	int			offsety;
-}	t_line;
-
-typedef struct s_all // структура для всего вместе
+typedef struct s_all
 {
 	t_win	win;
 	t_plr	plr;
@@ -153,6 +137,7 @@ typedef struct s_all // структура для всего вместе
 	t_map	mini;
 	char	**map;
 	int		mouse_x;	
+	int		mouse_flag;
 }	t_all;
 //test
 void			test_parser(char *av1, t_all *all);
@@ -174,5 +159,6 @@ void			my_mlx_pixel_put(t_img img, t_point point, int color);
 //mini_map
 void			draw_mini_map(t_all *all);
 //mouse_move
+int				mouse_relese(int keykode, int x, int y, t_all *all);
 int				mouse_move(int x, int y, t_all *all);
 #endif

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:18:20 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/28 14:15:29 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:50:44 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,10 @@ int	keyboard_hook(int keycode, t_all *all)
 
 int	loop_hook(t_all *all)
 {
-	mlx_mouse_hide();
+	if (all->mouse_flag)
+		mlx_mouse_hide();
+	else
+		mlx_mouse_show();
 	move_spin(all);
 	ft_raycasting(all);
 	mlx_put_image_to_window(all->win.mlx, all->win.win, all->display.img, 0, 0);

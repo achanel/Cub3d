@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:49:12 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/28 14:07:00 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/01 16:52:02 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,11 @@ void	spin(t_all *all)
 		all->plr.angle -= 2 * M_PI;
 	else if (all->plr.angle < 0)
 		all->plr.angle += 2 * M_PI;
-	all->plr.angle -= (all->mouse_x - WIDTH / 2) * MOUSE;
-	all->mouse_x = WIDTH / 2;
+	if (all->mouse_flag)
+	{
+		all->plr.angle -= (all->mouse_x - WIDTH / 2) * MOUSE;
+		all->mouse_x = WIDTH / 2;
+	}
 }
 
 void	move_spin(t_all *all)

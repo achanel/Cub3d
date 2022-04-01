@@ -1,16 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/01 14:00:36 by achanel           #+#    #+#             */
+/*   Updated: 2022/04/01 16:00:01 by achanel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3D.h"
 
-void	add_img(char *texture, t_all *all, int index)
+static void	add_img(char *texture, t_all *all, int index)
 {
 	t_img	img;
 
 	img = all->txt[index];
 	img.img = mlx_xpm_file_to_image(all->win.mlx, texture, &img.w, &img.h);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, &img.line_length, &img.endian);
+	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel,
+			&img.line_length, &img.endian);
 	all->txt[index] = img;
 }
 
-void	add_rgb(t_all *all, int index)
+static void	add_rgb(t_all *all, int index)
 {
 	t_img	img;
 	t_point	p;
@@ -22,10 +35,6 @@ void	add_rgb(t_all *all, int index)
 	img.w = 1;
 	img.addr = mlx_get_data_addr(img.img,
 			&img.bits_per_pixel, &img.line_length, &img.endian);
-	// if (index == 0)
-	// 	my_mlx_pixel_put(img, p, 0x340707);//chok
-	// else
-	// 	my_mlx_pixel_put(img, p, 0x00FFFF);//cian
 	all->txt[index] = img;
 }
 
@@ -33,10 +42,10 @@ void	make_txt(t_all *all)
 {
 	add_rgb(all, 0); //F
 	add_rgb(all, 1); //C
-	add_img("./txt/NorthMetallic.xpm", all, 2); //NO
-	add_img("./txt/SouthMultibrickL.xpm", all, 3); // SO
-	add_img("./txt/WestWoodbrickL.xpm", all, 4); //WE
-	add_img("./txt/EastBluegreyL.xpm", all, 5); //EA
+	add_img("./txt/NorthMetallic.xpm", all, NORTH);
+	add_img("./txt/SouthMultibrickL.xpm", all, SOUTH);
+	add_img("./txt/WestWoodbrickL.xpm", all, WEST);
+	add_img("./txt/EastBluegreyL.xpm", all, EAST);
 }
 
 void	player_data(char c, t_all *all, int i, int j)
@@ -74,7 +83,6 @@ void	make_plr(t_all *all)
 			if (is_player_char(all->map[j][i]))
 			{
 				player_data(all->map[j][i], all, i, j);
-				// printf("%c\n", all->map[j][i]);
 				all->map[j][i] = '0';
 				return ;
 			}
@@ -91,7 +99,7 @@ void	make_plr(t_all *all)
 
 void	make_map(t_all *all, t_list **head, int size)
 {
-	int		  i = -1;
+	int		i = -1;
 	t_list	*tmp = *head;
 
 	all->map = ft_calloc(size + 1, sizeof(char *));

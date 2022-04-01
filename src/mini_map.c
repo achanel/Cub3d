@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/28 12:53:44 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/30 18:14:58 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/01 13:47:58 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static void	ft_scale_img(t_point point, t_all *all, int color, int scale)
 static void	draw_plr(t_all *all, int scale)
 {
 	t_point	plr;
-	
+
 	plr.x = all->plr.x + all->plr.dir_x;
 	plr.y = all->plr.y + all->plr.dir_y;
 	draw_lov(plr, all, scale);
