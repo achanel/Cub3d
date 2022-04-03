@@ -6,18 +6,21 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/01 16:43:42 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/03 13:38:17 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 # include <unistd.h>
-# include <stdio.h>
+// # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
+# include <errno.h>
+# include <string.h>
 # include "mlx.h"
-# include "../libft/libft.h"
+# include "../libft/includes/libft.h"
+// # include "parser.h"
 # define WIDTH 800
 # define HEIGHT 600
 # define MINI_MAP 150
@@ -35,7 +38,7 @@
 
 # define HITBOX 0.3
 # define MOUSE 0.00065
-# define BUFFER_SIZE 1000
+// # define BUFFER_SIZE 1000
 
 # define WE 0
 # define NS 1
@@ -43,6 +46,9 @@
 # define SOUTH 3
 # define WEST 4
 # define EAST 5
+
+# define FLOOR 0
+# define CELLING 1
 
 typedef struct s_win
 {
@@ -128,20 +134,46 @@ typedef struct s_map
 	int	y_end;
 }	t_map;
 
+typedef struct s_player
+{
+	int	x;
+	int	y;
+	int	orient;
+}				t_player;
+
+typedef struct s_parser
+{
+	int			floor;
+	int			ceiling;
+	int			j;
+	int			i;
+	char		*no;
+	char		*so;
+	char		*we;
+	char		*ea;
+	int			map_size;
+	int			file_size;
+	t_player	p;
+}				t_parser;
+
 typedef struct s_all
 {
-	t_win	win;
-	t_plr	plr;
-	t_img	txt[6];
-	t_img	display;
-	t_map	mini;
-	char	**map;
-	int		mouse_x;	
-	int		mouse_flag;
+	t_win		win;
+	t_plr		plr;
+	t_img		txt[6];
+	t_img		display;
+	t_map		mini;
+	t_parser	*pars;
+	char		**map;
+	int			mouse_x;	
+	int			mouse_flag;
+	int			ceilling;
+	int			floor;
 }	t_all;
+
 //test
-void			test_parser(char *av1, t_all *all);
-int				get_next_line(int fd, char **line);
+// void			test_parser(char *av1, t_all *all);
+// int				get_next_line(int fd, char **line);
 //draw
 void			draw_line(t_all *all, t_ray *ray, int x);
 //hook
@@ -161,4 +193,51 @@ void			draw_mini_map(t_all *all);
 //mouse_move
 int				mouse_relese(int keykode, int x, int y, t_all *all);
 int				mouse_move(int x, int y, t_all *all);
+//parser
+int	main_parser(char **argv, t_all *all);
+
+void	precheck_file(t_list *file, t_all *all);
+// walls.c
+void	fill_struct(t_all *all, char *str);
+// walls_utils.c
+char		*texture_link(char *str);
+void		check_after_link(t_parser *pars, char *str);
+// errors.c
+void		file_error(t_parser *pars);
+void		link_error(t_parser *pars);
+void		malloc_error(void *ptr);
+void		for_free(char **new);
+void		error_exit(void);
+void		map_error(t_parser *pars);
+// fts_for_struct.c
+t_parser	*pars_init(void);
+void		free_list(t_list *list);
+void		free_data(t_parser *pars);
+
+// color_sides.c
+void		error_color(char **arr, t_parser *pars);
+int			color_font(char *str, t_parser *pars);
+void		floor_color(t_parser *pars, char **str);
+void		ceilling_color(t_parser *pars, char **str);
+
+// map.c
+void	fill_map(t_all *all, char *str);
+
+// checks_textures.c
+char		*texture_link(char *str);
+void		check_textures(t_parser *pars);
+
+// check_map.c
+void		if_space_error(t_all *all, int i, int j);
+void		if_space_in_map(t_all *all, int i, int j);
+void		check_map(t_all *all);
+
+// borders.c
+void	check_borders(t_all *all);
+void		validate_map(t_all *all);
+void	map_spaces(t_all *all, int i, int j);
+// parser.c
+void		check_parser(t_parser *pars);//удалить
+// src
+void	add_to_all(t_all *all);
 #endif

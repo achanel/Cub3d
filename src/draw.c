@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:44:46 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/01 16:32:48 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/03 13:36:58 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	draw_line(t_all *all, t_ray *ray, int x)
 	while (i < ray->draw_start)
 	{
 		draw_p.y = i;
-		color = 0x00FFFF;
+		color = all->pars->ceiling;
 		my_mlx_pixel_put(all->display, draw_p, color);
 		i++;
 	}
 	draw_helper(all, ray, draw_p);
 	while (ray->draw_start < HEIGHT)
 	{
-		color = 0x340707;
+		color = all->pars->floor;
 		draw_p.x = ray->pix_x;
 		draw_p.y = ray->draw_start;
 		my_mlx_pixel_put(all->display, draw_p, color);

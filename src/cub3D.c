@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:14:51 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/01 16:48:51 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/03 13:24:24 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ void	init_txt(t_all *all)
 
 void	init_all(t_all *all)
 {
+	all->pars = pars_init();
 	init_mlx(all);
 	init_txt(all);
 	all->map = NULL;
 	all->mouse_x = WIDTH / 2;
 	all->mouse_flag = 1;
+	all->map = NULL;
 }
 
 int	main(int ac, char **av)
@@ -56,7 +58,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		ft_errors("Error: Bad number of arguments\n");
 	init_all(&all);
-	test_parser(av[1], &all);
+	main_parser(av, &all);
 	mlx_do_key_autorepeatoff(all.win.mlx);
 	mlx_key_hook(all.win.win, keyboard_hook, &all);
 	mlx_hook(all.win.win, 2, 1L << 0, keyboard_hook, &all);
