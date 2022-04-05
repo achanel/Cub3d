@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   errors.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:30:12 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/04 18:08:48 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 09:47:47 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,19 +35,6 @@ void	malloc_error(void *ptr)
 		ft_putstr_fd("Error with malloc\n", 2);
 		exit(EXIT_FAILURE);
 	}
-}
-
-void	for_free(char **new)
-{
-	size_t	i;
-
-	i = 0;
-	while (new[i])
-	{
-		free(new[i]);
-		i++;
-	}
-	free(new);
 }
 
 void	error_exit(void)

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/05 09:37:56 by achanel           #+#    #+#             */
+/*   Updated: 2022/04/05 09:37:57 by achanel          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../includes/libft.h"
 
 void	*ft_calloc(size_t num, size_t size)
@@ -15,3 +27,4 @@ void	*ft_calloc(size_t num, size_t size)
 	ft_bzero(ptr, num * size);
 	return (ptr);
 }
+h

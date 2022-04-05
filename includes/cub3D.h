@@ -3,26 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/04 16:44:52 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 10:45:53 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+# include <stdio.h>
 # include <unistd.h>
-// # include <stdio.h>
 # include <math.h>
 # include <fcntl.h>
 # include <errno.h>
 # include <string.h>
 # include "mlx.h"
 # include "../libft/includes/libft.h"
-// # include "parser.h"
-# define WIDTH 800
-# define HEIGHT 600
+# define WIDTH 1040
+# define HEIGHT 720
 # define MINI_MAP 150
 
 # define ARROW_LEFT 123
@@ -38,7 +37,6 @@
 
 # define HITBOX 0.3
 # define MOUSE 0.00065
-// # define BUFFER_SIZE 1000
 
 # define WE 0
 # define NS 1
@@ -169,11 +167,9 @@ typedef struct s_all
 	int			mouse_flag;
 	int			ceilling;
 	int			floor;
+	int			mini_flag;
 }	t_all;
 
-//test
-// void			test_parser(char *av1, t_all *all);
-// int				get_next_line(int fd, char **line);
 //draw
 void			draw_line(t_all *all, t_ray *ray, int x);
 //hook
@@ -185,6 +181,8 @@ void			move_spin(t_all *all);
 //raycasting
 void			ft_raycasting(t_all *all);
 //utils
+void			for_free(char **new);
+int				is_player_char(char c);
 void			ft_errors(char *error_str);
 unsigned int	get_texture_color(t_img txt, t_point point);
 void			my_mlx_pixel_put(t_img img, t_point point, int color);
@@ -206,7 +204,6 @@ void			check_after_link(t_parser *pars, char *str);
 void			file_error(t_parser *pars);
 void			link_error(t_parser *pars);
 void			malloc_error(void *ptr);
-void			for_free(char **new);
 void			error_exit(void);
 void			map_error(t_parser *pars);
 // fts_for_struct.c
@@ -228,14 +225,17 @@ char			*texture_link(char *str);
 void			check_textures(t_parser *pars);
 
 // check_map.c
+void			check_borders(t_all *all);
 void			if_space_error(t_all *all, int i, int j);
 void			if_space_in_map(t_all *all, int i, int j);
 void			check_map(t_all *all);
 
 // borders.c
-void			check_borders(t_all *all);
+
 void			validate_map(t_all *all);
 void			map_spaces(t_all *all, int i, int j);
+void			check_borders_top_bottom(t_all *all);
+void			check_borders_left_right(t_all *all);
 // parser.c
 void			check_parser(t_parser *pars);//удалить
 // src

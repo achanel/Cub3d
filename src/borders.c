@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   borders.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:40:20 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/04 16:41:25 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 09:48:52 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,4 @@ void	check_borders_left_right(t_all *all)
 		if_space_in_map(all, i, ft_strlen(all->map[i]) - 1);
 		i++;
 	}
-}
-
-void	check_borders(t_all *all)
-{
-	check_borders_top_bottom(all);
-	check_borders_left_right(all);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:32:04 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/04 15:24:08 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 10:47:04 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,12 @@ t_list	*open_file(char *str, t_parser *pars)
 	return (file);
 }
 
-// void	check_parser(t_parser *pars)
-// {
-// 	printf("pars->NO = %s\n", pars->no);
-// 	printf("pars->SO = %s\n", pars->so);
-// 	printf("pars->WE = %s\n", pars->we);
-// 	printf("pars->EA = %s\n", pars->ea);
-// 	printf("pars->floor = %d\n", pars->floor);
-// 	printf("pars->ceiling = %d\n", pars->ceiling);
-// 	if (pars->map)
-// 		for(int i = 0; pars->map[i]; i++)
-// 			printf("pars->map[%d] = %s\n", i, pars->map[i]);
-// }
-
 int	main_parser(char **argv, t_all *all)
 {
 	t_list		*file;
 
+	if (WIDTH <= MINI_MAP || HEIGHT <= MINI_MAP)
+		ft_errors("Error: Bad window size\n");
 	if (ft_strncmp((argv[1] + (ft_strlen(argv[1]) - 4)), ".cub", 4))
 	{
 		ft_putstr_fd("Error: Bad format map\n", 2);
@@ -59,9 +48,7 @@ int	main_parser(char **argv, t_all *all)
 	precheck_file(file, all);
 	free_list(file);
 	check_map(all);
-	// check_parser(pars);
 	add_to_all(all);
 	free_data(all->pars);
-	// system("leaks parser");///
 	return (0);
 }

@@ -3,32 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 14:00:36 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/04 16:44:36 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 10:46:32 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-
-// void	make_map(t_all *all, t_parser *parser)
-// {
-// 	int	i;
-// 	int	j;
-
-// 	i = 0;
-// 	while (parser->map[i])
-// 	{
-// 		j = 0;
-// 		while (parser->map[j])
-// 		{
-// 			all->map[i][j] = parser->map[i][j];
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
 
 void	player_data(char c, t_all *all, int i, int j)
 {
@@ -42,13 +24,12 @@ void	player_data(char c, t_all *all, int i, int j)
 		all->plr.angle = M_PI;
 	all->plr.y = j + 0.5;
 	all->plr.x = i + 0.5;
-}
-
-static int	is_player_char(char c)
-{
-	if (c == 'S' || c == 'N' || c == 'W' || c == 'E')
-		return (1);
-	return (0);
+	all->plr.up = 0;
+	all->plr.down = 0;
+	all->plr.left = 0;
+	all->plr.right = 0;
+	all->plr.spin_l = 0;
+	all->plr.spin_r = 0;
 }
 
 void	make_plr(t_all *all)
@@ -75,12 +56,6 @@ void	make_plr(t_all *all)
 			}
 		}
 	}
-	all->plr.up = 0;
-	all->plr.down = 0;
-	all->plr.left = 0;
-	all->plr.right = 0;
-	all->plr.spin_l = 0;
-	all->plr.spin_r = 0;
 }
 
 static void	add_img(char *texture, t_all *all, int index)
@@ -111,6 +86,9 @@ static void	add_rgb(t_all *all, int index)
 
 void	add_to_all(t_all *all)
 {
+	int	i;
+
+	i = -1;
 	add_rgb(all, FLOOR);
 	add_rgb(all, CELLING);
 	add_img(all->pars->no, all, NORTH);
@@ -118,39 +96,9 @@ void	add_to_all(t_all *all)
 	add_img(all->pars->we, all, WEST);
 	add_img(all->pars->ea, all, EAST);
 	make_plr(all);
-	// all->ceilling = all->pars->ceiling;
-	// all->floor = all->pars->floor;
-	// make_map(all);
+	if (all->pars->map_size > HEIGHT / 3)
+		all->mini_flag = 0;
+	while (all->map[++i])
+		if (ft_strlen(all->map[i]) > WIDTH / 6)
+			all->mini_flag = 0;
 }
-
-
-// void	make_map(t_all *all, t_list **head, int size)
-// {
-// 	int		i = -1;
-// 	t_list	*tmp = *head;
-
-// 	all->map = ft_calloc(size + 1, sizeof(char *));
-// 	while (tmp)
-// 	{
-// 		all->map[++i] = tmp->content;
-// 		tmp = tmp->next;
-// 	}
-// 	i = -1;
-// 	// while (all->map[++i])
-// 	// 	ft_putendl_fd(all->map[i], 1);
-// 	// return (all->map);
-// }
-
-// void	test_parser(char *av1, t_all *all)
-// {
-// 	int		fd = open(av1, O_RDONLY);
-// 	char	*line = NULL;
-// 	t_list	*head = NULL;
-
-// 	while (get_next_line(fd, &line))
-// 		ft_lstadd_back(&head, ft_lstnew(line));
-// 	ft_lstadd_back(&head, ft_lstnew(line));
-// 	make_map(all, &head, ft_lstsize(head));
-// 	make_txt(all);
-// 	make_plr(all);
-// }

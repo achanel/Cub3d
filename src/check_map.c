@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:26:59 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/04 18:09:32 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 10:36:34 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 #include <stdio.h>
+
+void	check_borders(t_all *all)
+{
+	check_borders_top_bottom(all);
+	check_borders_left_right(all);
+}
 
 void	if_space_error(t_all *all, int i, int j)
 {

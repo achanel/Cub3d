@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:14:51 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/04 15:11:55 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 10:12:27 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	init_all(t_all *all)
 	all->mouse_flag = 1;
 	all->ceilling = -1;
 	all->floor = -1;
-	// all->map = NULL;
+	all->mini_flag = 1;
 }
 
 int	main(int ac, char **av)

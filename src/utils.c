@@ -6,11 +6,31 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:37:17 by achanel           #+#    #+#             */
-/*   Updated: 2022/03/30 17:39:18 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/05 09:47:51 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	for_free(char **new)
+{
+	size_t	i;
+
+	i = 0;
+	while (new[i])
+	{
+		free(new[i]);
+		i++;
+	}
+	free(new);
+}
+
+int	is_player_char(char c)
+{
+	if (c == 'S' || c == 'N' || c == 'W' || c == 'E')
+		return (1);
+	return (0);
+}
 
 unsigned int	get_texture_color(t_img txt, t_point point)
 {
@@ -37,15 +57,3 @@ void	ft_errors(char *error_str)
 	write(2, error_str, ft_strlen(error_str));
 	exit(EXIT_FAILURE);
 }
-//Malloc
-//File not found/invalid type
-//Bad map format
-//Duplicate textures
-//Duplicate resolutions
-//Duplicatre colors
-//Bad texture file
-//Bad color format
-//Some keys are invalid
-//Invalid main arguments
-//Invalid resolution
-//Invalid init

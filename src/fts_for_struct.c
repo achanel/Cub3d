@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fts_for_struct.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:30:25 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/03 17:15:59 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 10:46:52 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,5 @@ void	free_data(t_parser *pars)
 	free(pars->so);
 	free(pars->we);
 	free(pars->ea);
-	// if (pars->map)
-	// 	for_free(pars->map);
 	free(pars);
 }

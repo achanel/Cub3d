@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:44:46 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/03 18:38:30 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 10:32:53 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	draw_helper(t_all *all, t_ray *ray, t_point draw_p)
 	unsigned int	color;
 	t_point			tex_p;
 
-	while (ray->draw_start < ray->draw_end)
+	while (ray->draw_start <= ray->draw_end)
 	{
 		ray->tex_y = (int)ray->tex_pos;
 		ray->tex_pos += ray->tex_stepy;
