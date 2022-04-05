@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:49:31 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/05 10:29:09 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/05 12:44:20 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,14 @@ static void	cal_draw_start_end(t_ray *ray, t_all *all)
 	ray->draw_end = ray->line_height / 2 + HEIGHT / 2;
 	if (ray->draw_end >= HEIGHT)
 		ray->draw_end = HEIGHT - 1;
-	if (ray->side == 1)
+	if (ray->side == NS)
 		ray->wall_x = all->plr.x + ray->walldist * ray->dirx;
 	else
 		ray->wall_x = all->plr.y + ray->walldist * (ray->diry * -1);
 	ray->wall_x -= floor(ray->wall_x);
 	if (ray->side == NS && ray->stepy == -1)
 		ray->tex = SOUTH;
-	else if (ray->side == 1)
+	else if (ray->side == NS)
 		ray->tex = NORTH;
 	else if (ray->side == WE && ray->stepx == 1)
 		ray->tex = WEST;

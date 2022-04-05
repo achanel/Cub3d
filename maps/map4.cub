@@ -1,7 +1,7 @@
-NO ./txt/EastBluegreyL.xpm
-SO ./txt/NorthMetallic.xpm
-WE ./txt/SouthMultibrickL.xpm
-EA ./txt/WestWoodbrickL.xpm
+NO ./txt/NorthMetallic.xpm
+SO ./txt/SouthMultibrickL.xpm
+WE ./txt/WestWoodbrickL.xpm
+EA ./txt/EastBluegreyL.xpm
 
 F 220,100,0
 C 225,30,0

@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 14:00:36 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/05 10:46:32 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/05 12:48:57 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 void	player_data(char c, t_all *all, int i, int j)
 {
-	if (c == 'S')
+	if (c == 'N')
 		all->plr.angle = 3 * M_PI_2;
-	else if (c == 'N')
+	else if (c == 'S')
 		all->plr.angle = M_PI_2;
-	else if (c == 'E')
-		all->plr.angle = 0;
 	else if (c == 'W')
+		all->plr.angle = 0;
+	else if (c == 'E')
 		all->plr.angle = M_PI;
 	all->plr.y = j + 0.5;
 	all->plr.x = i + 0.5;
