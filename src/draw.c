@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/22 14:44:46 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/03 13:36:58 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/03 18:38:30 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ void	draw_line(t_all *all, t_ray *ray, int x)
 	while (i < ray->draw_start)
 	{
 		draw_p.y = i;
-		color = all->pars->ceiling;
+		color = all->ceilling;
 		my_mlx_pixel_put(all->display, draw_p, color);
 		i++;
 	}
 	draw_helper(all, ray, draw_p);
 	while (ray->draw_start < HEIGHT)
 	{
-		color = all->pars->floor;
+		color = all->floor;
 		draw_p.x = ray->pix_x;
 		draw_p.y = ray->draw_start;
 		my_mlx_pixel_put(all->display, draw_p, color);

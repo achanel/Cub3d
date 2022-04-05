@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:26:59 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/03 13:31:09 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/04 18:09:32 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include <stdio.h>
 
 void	if_space_error(t_all *all, int i, int j)
 {
@@ -53,13 +54,15 @@ void	if_space_in_map(t_all *all, int i, int j)
 
 void	check_map(t_all *all)
 {
-	if (!all->map || !all->pars->no || !all->pars->so || !all->pars->we || !all->pars->ea
-		|| all->pars->floor == -1 || all->pars->ceiling == -1)
+	if (!all->map || !all->pars->no || !all->pars->so
+		|| !all->pars->we || !all->pars->ea
+		|| all->floor == -1 || all->ceilling == -1)
 		file_error(all->pars);
 	else
 	{
-		while (all->map[all->pars->map_size])
-			all->pars->map_size++;
+		all->pars->map_size = all->pars->i;
+		all->map[++all->pars->map_size] = NULL;
+		make_plr(all);
 		check_borders(all);
 		validate_map(all);
 	}

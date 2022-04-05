@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 14:00:36 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/03 13:38:43 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/04 16:44:36 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 // 	}
 // }
 
-static void	player_data(char c, t_all *all, int i, int j)
+void	player_data(char c, t_all *all, int i, int j)
 {
 	if (c == 'S')
 		all->plr.angle = 3 * M_PI_2;
@@ -51,25 +51,29 @@ static int	is_player_char(char c)
 	return (0);
 }
 
-static void	make_plr(t_all *all)
+void	make_plr(t_all *all)
 {
 	int	i;
 	int	j;
 
-	i = -1;
 	j = -1;
 	while (all->map[++j])
 	{
+		i = -1;
 		while (all->map[j][++i])
 		{
 			if (is_player_char(all->map[j][i]))
 			{
-				player_data(all->map[j][i], all, i, j);
+				if (all->plr.x == 0 || all->plr.y == 0 || all->plr.angle == 0)
+					player_data(all->map[j][i], all, i, j);
+				else
+				{	
+					ft_putstr_fd("Bad player point\n", 2);
+					exit(EXIT_FAILURE);
+				}
 				all->map[j][i] = '0';
-				return ;
 			}
 		}
-		i = -1;
 	}
 	all->plr.up = 0;
 	all->plr.down = 0;
@@ -114,8 +118,8 @@ void	add_to_all(t_all *all)
 	add_img(all->pars->we, all, WEST);
 	add_img(all->pars->ea, all, EAST);
 	make_plr(all);
-	all->ceilling = all->pars->ceiling;
-	all->floor = all->pars->floor;
+	// all->ceilling = all->pars->ceiling;
+	// all->floor = all->pars->floor;
 	// make_map(all);
 }
 

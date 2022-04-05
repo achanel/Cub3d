@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/03 13:38:17 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/04 16:44:52 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,50 +194,53 @@ void			draw_mini_map(t_all *all);
 int				mouse_relese(int keykode, int x, int y, t_all *all);
 int				mouse_move(int x, int y, t_all *all);
 //parser
-int	main_parser(char **argv, t_all *all);
+int				main_parser(char **argv, t_all *all);
 
-void	precheck_file(t_list *file, t_all *all);
+void			precheck_file(t_list *file, t_all *all);
 // walls.c
-void	fill_struct(t_all *all, char *str);
+void			fill_struct(t_all *all, char *str);
 // walls_utils.c
-char		*texture_link(char *str);
-void		check_after_link(t_parser *pars, char *str);
+char			*texture_link(char *str);
+void			check_after_link(t_parser *pars, char *str);
 // errors.c
-void		file_error(t_parser *pars);
-void		link_error(t_parser *pars);
-void		malloc_error(void *ptr);
-void		for_free(char **new);
-void		error_exit(void);
-void		map_error(t_parser *pars);
+void			file_error(t_parser *pars);
+void			link_error(t_parser *pars);
+void			malloc_error(void *ptr);
+void			for_free(char **new);
+void			error_exit(void);
+void			map_error(t_parser *pars);
 // fts_for_struct.c
-t_parser	*pars_init(void);
-void		free_list(t_list *list);
-void		free_data(t_parser *pars);
+t_parser		*pars_init(void);
+void			free_list(t_list *list);
+void			free_data(t_parser *pars);
 
 // color_sides.c
-void		error_color(char **arr, t_parser *pars);
-int			color_font(char *str, t_parser *pars);
-void		floor_color(t_parser *pars, char **str);
-void		ceilling_color(t_parser *pars, char **str);
+void			error_color(char **arr, t_parser *pars);
+int				color_font(char *str, t_parser *pars);
+void			floor_color(t_all *pars, char **str);
+void			ceilling_color(t_all *pars, char **str);
 
 // map.c
-void	fill_map(t_all *all, char *str);
+void			fill_map(t_all *all, char *str);
 
 // checks_textures.c
-char		*texture_link(char *str);
-void		check_textures(t_parser *pars);
+char			*texture_link(char *str);
+void			check_textures(t_parser *pars);
 
 // check_map.c
-void		if_space_error(t_all *all, int i, int j);
-void		if_space_in_map(t_all *all, int i, int j);
-void		check_map(t_all *all);
+void			if_space_error(t_all *all, int i, int j);
+void			if_space_in_map(t_all *all, int i, int j);
+void			check_map(t_all *all);
 
 // borders.c
-void	check_borders(t_all *all);
-void		validate_map(t_all *all);
-void	map_spaces(t_all *all, int i, int j);
+void			check_borders(t_all *all);
+void			validate_map(t_all *all);
+void			map_spaces(t_all *all, int i, int j);
 // parser.c
-void		check_parser(t_parser *pars);//удалить
+void			check_parser(t_parser *pars);//удалить
 // src
-void	add_to_all(t_all *all);
+void			add_to_all(t_all *all);
+// init
+void			player_data(char c, t_all *all, int i, int j);
+void			make_plr(t_all *all);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   color_sides.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:30:18 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/03 11:37:36 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/04 16:53:05 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	create_rgb(int r, int g, int b)
 	if ((r < 0 || r > 255) || (g < 0 || g > 255)
 		|| (b < 0 || b > 255))
 		return (-1);
-	return (r << 16 | g << 8 | b);
+	return (1 << 24 | r << 16 | g << 8 | b);
 }
 
 int	color_font(char *str, t_parser *pars)
@@ -50,22 +50,22 @@ int	color_font(char *str, t_parser *pars)
 	return (color);
 }
 
-void	floor_color(t_parser *pars, char **str)
+void	floor_color(t_all *all, char **str)
 {
 	if (ft_strnstr("F", str[0], 1) && !str[2])
 	{
-		pars->floor = color_font(str[1], pars);
+		all->floor = color_font(str[1], all->pars);
 	}
 	else
-		file_error(pars);
+		file_error(all->pars);
 }
 
-void	ceilling_color(t_parser *pars, char **str)
+void	ceilling_color(t_all *all, char **str)
 {
 	if (ft_strnstr("C", str[0], 1) && !str[2])
 	{
-		pars->ceiling = color_font(str[1], pars);
+		all->ceilling = color_font(str[1], all->pars);
 	}
 	else
-		file_error(pars);
+		file_error(all->pars);
 }

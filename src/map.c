@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:31:57 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/03 13:23:35 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/04 15:20:48 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+#include <stdio.h>
 
 void	arr_to_list_sp(char *str, t_all *all)
 {
@@ -18,8 +19,6 @@ void	arr_to_list_sp(char *str, t_all *all)
 	{
 		all->map[++all->pars->i] = ft_strdup(str);
 	}
-	else
-		all->map[all->pars->i++] = NULL;
 }
 
 void	fill_map(t_all *all, char *str)

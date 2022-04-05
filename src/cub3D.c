@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 16:14:51 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/03 13:24:24 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/04 15:11:55 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,18 @@ void	init_txt(t_all *all)
 
 void	init_all(t_all *all)
 {
+	all->plr.x = 0;
+	all->plr.y = 0;
+	all->plr.angle = 0;
 	all->pars = pars_init();
 	init_mlx(all);
 	init_txt(all);
 	all->map = NULL;
 	all->mouse_x = WIDTH / 2;
 	all->mouse_flag = 1;
-	all->map = NULL;
+	all->ceilling = -1;
+	all->floor = -1;
+	// all->map = NULL;
 }
 
 int	main(int ac, char **av)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:32:04 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/03 13:20:31 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/04 15:24:08 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ int	main_parser(char **argv, t_all *all)
 	}
 	file = open_file(argv[1], all->pars);
 	precheck_file(file, all);
+	free_list(file);
 	check_map(all);
 	// check_parser(pars);
 	add_to_all(all);
 	free_data(all->pars);
-	system("leaks parser");///
+	// system("leaks parser");///
 	return (0);
 }

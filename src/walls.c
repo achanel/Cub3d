@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   walls.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:37:21 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/03 13:22:12 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/03 17:49:59 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	fill_struct(t_all *all, char *str)
 
 	str1 = NULL;
 	if (!all->pars->no || !all->pars->so || !all->pars->we || !all->pars->ea
-		|| all->pars->floor == -1 || all->pars->ceiling == -1)
+		|| all->floor == -1 || all->ceilling == -1)
 	{
 		if (!ft_strlen(str))
 			return ;
@@ -72,9 +72,9 @@ void	fill_struct(t_all *all, char *str)
 		if (ft_strnstr("EA", str1[0], 2))
 			ea_side(all->pars, str1);
 		if (ft_strnstr("F", str1[0], 1))
-			floor_color(all->pars, str1);
+			floor_color(all, str1);
 		if (ft_strnstr("C", str1[0], 1))
-			ceilling_color(all->pars, str1);
+			ceilling_color(all, str1);
 		for_free(str1);
 	}
 	else

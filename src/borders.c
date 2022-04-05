@@ -3,14 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   borders.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
+/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:40:20 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/03 13:29:40 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/04 16:41:25 by rhoke            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+void	check_zero(t_all *all, int i, int j)
+{
+	if ((all->map[i - 1][j - 1] == '1'
+		|| all->map[i - 1][j - 1] == '0') && (all->map[i][j - 1] == '1'
+		|| all->map[i][j - 1] == '0') && (all->map[i + 1][j + 1] == '1'
+		|| all->map[i + 1][j + 1] == '0') && (all->map[i - 1][j + 1] == '1'
+		|| all->map[i - 1][j + 1] == '0') && (all->map[i - 1][j] == '1'
+		|| all->map[i - 1][j] == '0') && (all->map[i + 1][j] == '1'
+		|| all->map[i + 1][j] == '0') && (all->map[i + 1][j - 1] == '1'
+		|| all->map[i + 1][j - 1] == '0') && (all->map[i][j + 1] == '1'
+		|| all->map[i][j + 1] == '0'))
+		return ;
+	else
+	{
+		ft_putstr_fd("lol", 1);
+		map_error(all->pars);
+	}
+}
 
 void	map_spaces(t_all *all, int i, int j)
 {
@@ -36,6 +55,8 @@ void	validate_map(t_all *all)
 		while (all->map[i][j])
 		{
 			map_spaces(all, i, j);
+			if (all->map[i][j] == '0')
+				check_zero(all, i, j);
 			j++;
 		}
 		i++;
@@ -49,6 +70,10 @@ void	check_borders_top_bottom(t_all *all)
 	i = 0;
 	while (all->map[0][i])
 	{
+		if (ft_strlen(all->map[0]) < ft_strlen(all->map[1])
+			&& (all->map[1][ft_strlen(all->map[0]) - 1] == '0'
+			|| all->map[1][ft_strlen(all->map[0]) + 1] == '0'))
+			map_error(all->pars);
 		if_space_error(all, 0, i);
 		if_space_in_map(all, 0, i);
 		i++;
