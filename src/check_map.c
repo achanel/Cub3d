@@ -6,12 +6,11 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:26:59 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/05 10:36:34 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/05 11:37:08 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include <stdio.h>
 
 void	check_borders(t_all *all)
 {

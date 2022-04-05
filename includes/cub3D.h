@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/09 15:20:05 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/05 10:45:53 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/05 11:39:51 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@
 # define S_KEY 1
 # define A_KEY 0
 # define D_KEY 2
-# define P_KEY 35
 # define KEY_ESC 53
 
 # define HITBOX 0.3
@@ -216,28 +215,21 @@ void			error_color(char **arr, t_parser *pars);
 int				color_font(char *str, t_parser *pars);
 void			floor_color(t_all *pars, char **str);
 void			ceilling_color(t_all *pars, char **str);
-
 // map.c
 void			fill_map(t_all *all, char *str);
-
 // checks_textures.c
 char			*texture_link(char *str);
 void			check_textures(t_parser *pars);
-
 // check_map.c
 void			check_borders(t_all *all);
 void			if_space_error(t_all *all, int i, int j);
 void			if_space_in_map(t_all *all, int i, int j);
 void			check_map(t_all *all);
-
 // borders.c
-
 void			validate_map(t_all *all);
 void			map_spaces(t_all *all, int i, int j);
 void			check_borders_top_bottom(t_all *all);
 void			check_borders_left_right(t_all *all);
-// parser.c
-void			check_parser(t_parser *pars);//удалить
 // src
 void			add_to_all(t_all *all);
 // init

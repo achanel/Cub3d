@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhoke <rhoke@student.42.fr>                +#+  +:+       +#+        */
+/*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:31:57 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/04 15:20:48 by rhoke            ###   ########.fr       */
+/*   Updated: 2022/04/05 11:37:59 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
-#include <stdio.h>
 
 void	arr_to_list_sp(char *str, t_all *all)
 {

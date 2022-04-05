@@ -6,7 +6,7 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/02 16:40:20 by rhoke             #+#    #+#             */
-/*   Updated: 2022/04/05 09:48:52 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/05 11:02:11 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	check_zero(t_all *all, int i, int j)
 		|| all->map[i][j + 1] == '0'))
 		return ;
 	else
-	{
-		ft_putstr_fd("lol", 1);
 		map_error(all->pars);
-	}
 }
 
 void	map_spaces(t_all *all, int i, int j)
