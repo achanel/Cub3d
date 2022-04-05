@@ -6,11 +6,27 @@
 /*   By: achanel <achanel@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/01 14:00:36 by achanel           #+#    #+#             */
-/*   Updated: 2022/04/05 12:58:00 by achanel          ###   ########.fr       */
+/*   Updated: 2022/04/05 14:54:56 by achanel          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	plr(t_all *all)
+{
+	int	i;
+	int	j;
+
+	j = -1;
+	while (all->map[++j])
+	{
+		i = -1;
+		while (all->map[j][++i])
+			if (is_player_char(all->map[j][i]))
+				return (1);
+	}
+	return (0);
+}
 
 void	player_data(char c, t_all *all, int i, int j)
 {
@@ -38,24 +54,29 @@ void	make_plr(t_all *all)
 	int	j;
 
 	j = -1;
-	while (all->map[++j])
+	if (plr(all))
 	{
-		i = -1;
-		while (all->map[j][++i])
+		while (all->map[++j])
 		{
-			if (is_player_char(all->map[j][i]))
+			i = -1;
+			while (all->map[j][++i])
 			{
-				if (all->plr.x == 0 || all->plr.y == 0 || all->plr.angle == 0)
-					player_data(all->map[j][i], all, i, j);
-				else
-				{	
-					ft_putstr_fd("Bad player point\n", 2);
-					exit(EXIT_FAILURE);
+				if (is_player_char(all->map[j][i]))
+				{
+					if (all->plr.x == 0 || all->plr.y == 0 || all->plr.angle == 0)
+						player_data(all->map[j][i], all, i, j);
+					else
+					{	
+						ft_putstr_fd("Bad player point\n", 2);
+						exit(EXIT_FAILURE);
+					}
+					all->map[j][i] = '0';
 				}
-				all->map[j][i] = '0';
 			}
 		}
 	}
+	else
+		ft_errors("eeeeee\n");
 }
 
 static void	add_img(char *texture, t_all *all, int index)
@@ -95,7 +116,7 @@ void	add_to_all(t_all *all)
 	add_img(all->pars->so, all, SOUTH);
 	add_img(all->pars->we, all, WEST);
 	add_img(all->pars->ea, all, EAST);
-	make_plr(all);
+	// make_plr(all);
 	if (all->pars->map_size > HEIGHT / 3)
 		all->mini_flag = 0;
 	while (all->map[++i])

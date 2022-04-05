@@ -1,8 +1,10 @@
 make --dry-run --always-make --keep-going --print-directory
-make: Entering directory `/Users/achanel/Desktop/xxx'
+make: Entering directory `/Users/achanel/Desktop/111'
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -sC ./libft/
-make[1]: Entering directory `/Users/achanel/Desktop/xxx/libft'
+ 
+make[1]: Entering directory `/Users/achanel/Desktop/111/libft'
 gcc -Wall -Wextra -Werror -c sources/ft_atoi.c -o sources/ft_atoi.o
+ 
 gcc -Wall -Wextra -Werror -c sources/ft_bzero.c -o sources/ft_bzero.o
 gcc -Wall -Wextra -Werror -c sources/ft_calloc.c -o sources/ft_calloc.o
 gcc -Wall -Wextra -Werror -c sources/ft_isalnum.c -o sources/ft_isalnum.o
@@ -24,6 +26,7 @@ gcc -Wall -Wextra -Werror -c sources/ft_memccpy.c -o sources/ft_memccpy.o
 gcc -Wall -Wextra -Werror -c sources/ft_memchr.c -o sources/ft_memchr.o
 gcc -Wall -Wextra -Werror -c sources/ft_memcmp.c -o sources/ft_memcmp.o
 gcc -Wall -Wextra -Werror -c sources/ft_memcpy.c -o sources/ft_memcpy.o
+ 
 gcc -Wall -Wextra -Werror -c sources/ft_memmove.c -o sources/ft_memmove.o
 gcc -Wall -Wextra -Werror -c sources/ft_memset.c -o sources/ft_memset.o
 gcc -Wall -Wextra -Werror -c sources/ft_putchar_fd.c -o sources/ft_putchar_fd.o
@@ -47,9 +50,10 @@ gcc -Wall -Wextra -Werror -c sources/ft_tolower.c -o sources/ft_tolower.o
 gcc -Wall -Wextra -Werror -c sources/ft_toupper.c -o sources/ft_toupper.o
 gcc -Wall -Wextra -Werror -c sources/get_next_line.c -o sources/get_next_line.o
 ar rcs libft.a sources/ft_atoi.o sources/ft_bzero.o sources/ft_calloc.o sources/ft_isalnum.o sources/ft_isalpha.o sources/ft_isascii.o sources/ft_isdigit.o sources/ft_isprint.o sources/ft_itoa.o sources/ft_lstadd_back.o sources/ft_lstadd_front.o sources/ft_lstclear.o sources/ft_lstdelone.o sources/ft_lstiter.o sources/ft_lstlast.o sources/ft_lstmap.o sources/ft_lstnew.o sources/ft_lstsize.o sources/ft_memccpy.o sources/ft_memchr.o sources/ft_memcmp.o sources/ft_memcpy.o sources/ft_memmove.o sources/ft_memset.o sources/ft_putchar_fd.o sources/ft_putendl_fd.o sources/ft_putnbr_fd.o sources/ft_putstr_fd.o sources/ft_split.o sources/ft_strchr.o sources/ft_strdup.o sources/ft_strjoin.o sources/ft_strlcat.o sources/ft_strlcpy.o sources/ft_strlen.o sources/ft_strmapi.o sources/ft_strncmp.o sources/ft_strnstr.o sources/ft_strrchr.o sources/ft_strtrim.o sources/ft_substr.o sources/ft_tolower.o sources/ft_toupper.o sources/get_next_line.o
-make[1]: Leaving directory `/Users/achanel/Desktop/xxx/libft'
+make[1]: Leaving directory `/Users/achanel/Desktop/111/libft'
 /Applications/Xcode.app/Contents/Developer/usr/bin/make -sC ./mlx/ 2>/dev/null
-make[1]: Entering directory `/Users/achanel/Desktop/xxx/mlx'
+ 
+make[1]: Entering directory `/Users/achanel/Desktop/111/mlx'
 cc -O2 -DSTRINGPUTX11   -c -o mlx_shaders.o mlx_shaders.c
 cc -O2 -DSTRINGPUTX11   -c -o mlx_new_window.o mlx_new_window.m
 cc -O2 -DSTRINGPUTX11   -c -o mlx_init_loop.o mlx_init_loop.m
@@ -60,7 +64,7 @@ cc -O2 -DSTRINGPUTX11   -c -o mlx_png.o mlx_png.c
 cc -O2 -DSTRINGPUTX11   -c -o mlx_mouse.o mlx_mouse.m
 ar -r libmlx.a mlx_shaders.o mlx_new_window.o mlx_init_loop.o mlx_new_image.o mlx_xpm.o mlx_int_str_to_wordtab.o mlx_png.o mlx_mouse.o
 ranlib libmlx.a
-make[1]: Leaving directory `/Users/achanel/Desktop/xxx/mlx'
+make[1]: Leaving directory `/Users/achanel/Desktop/111/mlx'
 mkdir -p objects/
 gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/cub3D.c -o objects/cub3D.o
 gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/init.c -o objects/init.o
@@ -82,5 +86,5 @@ gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/map.c -o 
 gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/parser.c -o objects/parser.o
 gcc -Wall -Wextra -Werror -g3 -c -I./includes/ -I./mlx/ -I./libft/ src/walls.c -o objects/walls.o
 gcc -Wall -Wextra -Werror -g3 -lmlx -lm -lft -L./libft/ -L./mlx/ -framework OpenGL -framework AppKit -I./includes/ -I./mlx/ -I./libft/ objects/cub3D.o objects/init.o objects/hook.o objects/utils.o objects/raycasting.o objects/draw.o objects/moves.o objects/mini_map.o objects/mouse.o objects/borders.o objects/check_file.o objects/check_map.o objects/checks_textures.o objects/color_sides.o objects/errors.o objects/fts_for_struct.o objects/map.o objects/parser.o objects/walls.o -o cub3D
-make: Leaving directory `/Users/achanel/Desktop/xxx'
+make: Leaving directory `/Users/achanel/Desktop/111'
  
