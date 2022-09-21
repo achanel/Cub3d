@@ -31,7 +31,7 @@ OBJS = $(addprefix $(OBJS_DIRECTORY), $(OBJS_LIST))
 
 CC			= gcc
 
-CFLAGS	= -Wall -Wextra -Werror -g3
+CFLAGS	= -Wall -Wextra -g3
 # CFLAGS	= -g
 
 all:		${NAME}
@@ -61,13 +61,3 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re bonus
-
-# clean:
-# 			@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
-# 			@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
-# 			@rm -rf $(OBJS_DIRECTORY)
-
-# fclean:		clean
-# 			@rm -f $(LIBFT)
-# 			@rm -f $(MINILIBX)
-# 			@rm -f $(NAME)

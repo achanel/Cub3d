@@ -76,7 +76,7 @@ void	make_plr(t_all *all)
 		}
 	}
 	else
-		ft_errors("eeeeee\n");
+		ft_errors("No player point\n");
 }
 
 static void	add_img(char *texture, t_all *all, int index)

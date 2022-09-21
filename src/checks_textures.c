@@ -46,9 +46,7 @@ void	check_link(char *str, t_parser *pars)
 {
 	int		fd;
 	char	*format;
-	int		i;
 
-	i = 0;
 	format = str + (ft_strlen(str) - 4);
 	fd = open(str, O_RDONLY);
 	if (fd == -1 || ft_strncmp(format, ".xpm", 4) != 0)

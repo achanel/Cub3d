@@ -35,17 +35,13 @@ void	precheck_file(t_list *file, t_all *all)
 {
 	t_list	*tmp;
 	char	*str;
-	int		i;
 
 	tmp = file;
 	while (tmp)
 	{
 		str = ft_strdup((char *)tmp->content);
-		i = 0;
 		if (!check_str(str, all))
-		{
 			break ;
-		}
 		tmp = tmp->next;
 		free(str);
 	}
