@@ -7,13 +7,17 @@
 # SUMMARY
 
 - [x] Mandatory part
-WASD to move, QE or Left/Right directional keys to rotate camera
-ESC to quit
-Textures for each sides (North, South, West, East) and Sky/Floor
-Crosshair
-Minimap
-Collectable items
+* WASD to move, QE or Left/Right directional keys to rotate camera
 
+* ESC to quit
+
+* Textures for each sides (North, South, West, East) and Sky/Floor
+
+* Crosshair
+
+* Minimap
+
+* Collectable items
 
 # RUN
 
