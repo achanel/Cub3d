@@ -27,11 +27,11 @@ make && ./cub3D maps/<map>
 
 # GAME
 
-Key comands to move around the maze
+- [x] Key comands to move around the maze
 
-W A S D to move the point of view
-Mouse or Left/Right (←/→) directional keys to rotate the camera
-ESC to quit
+* W A S D to move the point of view
+* Mouse or Left/Right (←/→) directional keys to rotate the camera
+* ESC to quit
 
 # POV
 
