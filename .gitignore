@@ -1,0 +1,18 @@
+# Executables
+cub3D
+
+# Object and archive files
+*.o
+*.a
+
+# Object directory
+objects/
+
+# macOS
+.DS_Store
+
+# Editors / IDE logs
+.vscode/*.log
+
+# Debug symbols
+*.dSYM/

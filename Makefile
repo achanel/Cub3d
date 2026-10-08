@@ -37,7 +37,7 @@ CFLAGS	= -Wall -Wextra -g3
 all:		${NAME}
 
 $(NAME):	$(LIBFT) $(MINILIBX) $(OBJS_DIRECTORY) $(OBJS)
-			@$(CC) $(CFLAGS) $(LIBRARY) $(INCLUDES) $(OBJS) -o $(NAME)
+			@$(CC) $(CFLAGS) $(INCLUDES) $(OBJS) $(LIBRARY) -o $(NAME)
 
 $(OBJS_DIRECTORY):
 			mkdir -p $(OBJS_DIRECTORY)
@@ -54,10 +54,13 @@ $(MINILIBX):
 
 clean:
 			@rm -rf $(OBJS_DIRECTORY)
+			@$(MAKE) -sC $(LIBFT_DIRECTORY) clean
+			@$(MAKE) -sC $(MINILIBX_DIRECTORY) clean
 
 fclean:		clean
 			@rm -f $(NAME)
+			@$(MAKE) -sC $(LIBFT_DIRECTORY) fclean
 
 re:			fclean all
 
-.PHONY:		all clean fclean re bonus
+.PHONY:		all clean fclean re

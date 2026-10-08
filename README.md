@@ -1,42 +1,84 @@
 # cub3D
 
-Этот проект вдохновлен всемирно известной 3D-игрой Wolfenstein, которая
-была первой FPS в истории. Вашей целью будет создание лабиринта, используя
-raycasting (как в [Wolfenstein 3D](https://fr.wikipedia.org/wiki/Wolfenstein_3D)).
+Псевдо-3D движок от первого лица в стиле *Wolfenstein 3D*, написанный на C с
+использованием MiniLibX. Проект из учебной программы **School 42**: по карте-лабиринту
+и текстурам движок строит трёхмерную сцену методом **raycasting** (алгоритм DDA).
 
-# SUMMARY
+![Демо](view.png)
 
-- [x] Mandatory part
-* WASD to move, QE or Left/Right directional keys to rotate camera
+## Возможности
 
-* ESC to quit
+- Псевдо-3D рендеринг методом raycasting с текстурированием всех четырёх сторон стен
+- Отдельные цвета пола и потолка
+- Свободное перемещение и поворот камеры
+- Мини-карта с положением игрока
+- Прицел по центру экрана
+- Парсер карт `.cub` с валидацией: замкнутость лабиринта, наличие текстур и цветов,
+  корректная стартовая позиция игрока
+- Коллекционные предметы
 
-* Textures for each sides (North, South, West, East) and Sky/Floor
+## Управление
 
-* Crosshair
+| Клавиша                 | Действие            |
+| ----------------------- | ------------------- |
+| `W` / `A` / `S` / `D`   | движение            |
+| `←` / `→` или мышь      | поворот камеры      |
+| `ESC`                   | выход               |
 
-* Minimap
+## Сборка и запуск
 
-* Collectable items
-
-# RUN
+Проект рассчитан на **macOS**: MiniLibX использует OpenGL и AppKit. Понадобятся `gcc`,
+`make` и Xcode Command Line Tools.
 
 ```bash
-make && ./cub3D maps/<map>
+make
+./cub3D maps/map4.cub
 ```
 
-# GAME
+Готовые к запуску карты лежат в `maps/`: `map4.cub`, `map5.cub`, `map6.cub`.
+Остальные файлы в `maps/` — негативные фикстуры для проверки парсера (отсутствие
+игрока, незамкнутые стены, неверный формат).
 
-- [x] Key comands to move around the maze
+```bash
+make clean    # удалить объектные файлы
+make fclean   # удалить объектные файлы, бинарник и библиотеки
+make re       # полная пересборка
+```
 
-* W A S D to move the point of view
-* Mouse or Left/Right (←/→) directional keys to rotate the camera
-* ESC to quit
+## Формат карты `.cub`
 
-# POV
+```
+NO ./txt/NorthMetallic.xpm      # текстура северной стены
+SO ./txt/SouthMultibrickL.xpm   # текстура южной стены
+WE ./txt/WestWoodbrickL.xpm     # текстура западной стены
+EA ./txt/EastBluegreyL.xpm      # текстура восточной стены
+F 220,100,0                     # цвет пола (R,G,B)
+C 225,30,0                      # цвет потолка (R,G,B)
 
-![basic](view.png)
+1111111111
+1000000001
+10N0000001                      # N/S/E/W — позиция и направление игрока
+1111111111
+```
 
-#	Resources
-*	[MiniLibX](https://harm-smits.github.io/42docs/libs/minilibx/introduction.html)
-*	[Raycaster](https://lodev.org/cgtutor/raycasting.html)
+`1` — стена, `0` — свободная ячейка, `N`/`S`/`E`/`W` — старт игрока.
+
+## Структура проекта
+
+```
+includes/   заголовки (cub3D.h)
+src/        исходники движка: parser, raycasting, draw, hook, moves, minimap, ...
+libft/      собственная реализация части стандартной библиотеки C
+mlx/        MiniLibX
+maps/       карты в формате .cub
+txt/        текстуры в формате XPM
+```
+
+## Ресурсы
+
+- [Raycasting (Lode Vandevenne)](https://lodev.org/cgtutor/raycasting.html)
+- [MiniLibX — документация](https://harm-smits.github.io/42docs/libs/minilibx/introduction.html)
+
+## Автор
+
+**achanel** — [github.com/achanel](https://github.com/achanel)

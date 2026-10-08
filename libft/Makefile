@@ -23,7 +23,7 @@ FLAGS = -Wall -Wextra -Werror
 all : $(NAME)
 
 $(NAME) : $(OBJ) $(HEADER)
-	ar rcs $(NAME) $?
+	ar rcs $(NAME) $(OBJ)
 
 %.o : %.c
 	gcc $(FLAGS) -c $< -o $@
