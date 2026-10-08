@@ -47,6 +47,9 @@ void	my_mlx_pixel_put(t_img img, t_point point, int color)
 {
 	char	*dst;
 
+	if (!img.addr || point.x < 0 || point.y < 0
+		|| point.x >= img.w || point.y >= img.h)
+		return ;
 	dst = img.addr + (point.y * img.line_length
 			+ point.x * (img.bits_per_pixel / 8));
 	*(unsigned int *)dst = color;

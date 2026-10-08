@@ -19,13 +19,13 @@ static void	move(float pl_cos, float pl_sin, t_all *all)
 
 	y = all->plr.y;
 	x = all->plr.x;
-	if (sin(pl_sin) < 0 && all->map[(int)(y - HITBOX)][(int)x] != '1')
+	if (sin(pl_sin) < 0 && !is_solid(all, (int)x, (int)(y - HITBOX)))
 		all->plr.y += sin(pl_sin) * MV_SPEED;
-	else if (sin(pl_sin) > 0 && all->map[(int)(y + HITBOX)][(int)x] != '1')
+	else if (sin(pl_sin) > 0 && !is_solid(all, (int)x, (int)(y + HITBOX)))
 		all->plr.y += sin(pl_sin) * MV_SPEED;
-	if (cos(pl_cos) > 0 && all->map[(int)y][(int)(x + HITBOX)] != '1')
+	if (cos(pl_cos) > 0 && !is_solid(all, (int)(x + HITBOX), (int)y))
 		all->plr.x += cos(pl_cos) * MV_SPEED;
-	else if (cos(pl_cos) < 0 && all->map[(int)y][(int)(x - HITBOX)] != '1')
+	else if (cos(pl_cos) < 0 && !is_solid(all, (int)(x - HITBOX), (int)y))
 		all->plr.x += cos(pl_cos) * MV_SPEED;
 }
 

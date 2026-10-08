@@ -22,6 +22,7 @@ int	check_str(char *tmp, t_all *all)
 	if (str[i] == 'N' || str[i] == 'S' || str[i] == 'W'
 		|| str[i] == 'E' || str[i] == 'F' || str[i] == 'C'
 		|| str[i] == ' ' || str[i] == '1' || str[i] == '0'
+		|| str[i] == 'D' || str[i] == '2'
 		|| !ft_strlen(str))
 	{
 		fill_struct(all, str);

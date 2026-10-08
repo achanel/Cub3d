@@ -21,7 +21,7 @@ void	draw_lov(t_point plr, t_all *all, int scale)
 	t_point	lov;
 
 	bx = cos(all->plr.angle);
-	by = sin(all->plr.angle);
+	by = -sin(all->plr.angle);
 	d = 0;
 	if (bx < 0.05 && bx > -0.05)
 		bx = 0.05;
@@ -64,8 +64,8 @@ static void	draw_plr(t_all *all, int scale)
 {
 	t_point	plr;
 
-	plr.x = all->plr.x + all->plr.dir_x;
-	plr.y = all->plr.y + all->plr.dir_y;
+	plr.x = all->plr.x + cos(all->plr.angle);
+	plr.y = all->plr.y - sin(all->plr.angle);
 	draw_lov(plr, all, scale);
 	ft_scale_img(plr, all, 0xFF0000, scale);
 }

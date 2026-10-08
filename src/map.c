@@ -31,7 +31,8 @@ void	fill_map(t_all *all, char *str)
 	check_textures(all->pars);
 	if (ft_strlen(str))
 	{
-		if (str[i] == '1' || str[i] == '0' || str[i] == ' ')
+		if (str[i] == '1' || str[i] == '0' || str[i] == ' '
+			|| str[i] == 'D' || str[i] == '2')
 		{
 			arr_to_list_sp(str, all);
 		}

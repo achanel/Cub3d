@@ -67,8 +67,10 @@ void	check_map(t_all *all)
 	{
 		all->pars->map_size = all->pars->i;
 		all->map[++all->pars->map_size] = NULL;
+		all->map_h = all->pars->map_size;
 		make_plr(all);
 		check_borders(all);
 		validate_map(all);
+		build_entities(all);
 	}
 }

@@ -47,6 +47,24 @@
 # define FLOOR 0
 # define CELLING 1
 
+# define DOOR_TEX 6
+# define SPRITE0 7
+# define SPRITE_FRAMES 4
+# define TEX_COUNT 11
+
+# define DOOR_PATH "./txt/Door.xpm"
+# define SPRITE_PATH "./txt/Coin"
+
+# define E_KEY 14
+# define SPACE_KEY 49
+
+# define MAX_DOORS 64
+# define MAX_SPRITES 256
+# define DOOR_OPEN_DIST 1.5
+# define COLLECT_DIST 0.45
+# define DOOR_SPEED 0.04
+# define ANIM_SPEED 8
+
 typedef struct s_win
 {
 	void		*mlx;
@@ -121,7 +139,35 @@ typedef struct s_ray
 	int			tex_x;
 	int			tex_y;
 	int			pix_x;
+	int			is_door;
 }				t_ray;
+
+typedef struct s_door
+{
+	int			x;
+	int			y;
+	int			open;
+	float		offset;
+}				t_door;
+
+typedef struct s_sprite
+{
+	float		x;
+	float		y;
+	int			alive;
+}				t_sprite;
+
+typedef struct s_sprite_view
+{
+	float		transform_y;
+	int			screen_x;
+	int			h;
+	int			w;
+	int			start_y;
+	int			end_y;
+	int			start_x;
+	int			end_x;
+}				t_sprite_view;
 
 typedef struct s_map
 {
@@ -155,25 +201,36 @@ typedef struct s_parser
 
 typedef struct s_all
 {
-	t_win		win;
-	t_plr		plr;
-	t_img		txt[6];
-	t_img		display;
-	t_map		mini;
-	t_parser	*pars;
-	char		**map;
-	int			mouse_x;	
-	int			mouse_flag;
-	int			ceilling;
-	int			floor;
-	int			mini_flag;
+	t_win			win;
+	t_plr			plr;
+	t_img			txt[TEX_COUNT];
+	t_img			display;
+	t_map			mini;
+	t_parser		*pars;
+	char			**map;
+	int				mouse_x;
+	int				mouse_flag;
+	int				ceilling;
+	int				floor;
+	int				mini_flag;
+	int				crosshair;
+	int				frame;
+	int				timer;
+	int				map_h;
+	int				door_count;
+	int				sprite_count;
+	t_door			doors[MAX_DOORS];
+	t_sprite		sprites[MAX_SPRITES];
+	float			z_buffer[WIDTH];
+	unsigned int	sprite_transp;
 }	t_all;
 
 //draw
 void			draw_line(t_all *all, t_ray *ray, int x);
 //hook
 int				ft_exit(t_all *all);
-int				keyboard_hook(int keycode, t_all *all);
+int				key_press(int keycode, t_all *all);
+int				key_release(int keycode, t_all *all);
 int				loop_hook(t_all *all);
 //moves
 void			move_spin(t_all *all);
@@ -235,4 +292,16 @@ void			add_to_all(t_all *all);
 // init
 void			player_data(char c, t_all *all, int i, int j);
 void			make_plr(t_all *all);
+// doors.c
+t_door			*find_door(t_all *all, int x, int y);
+void			build_entities(t_all *all);
+void			update_doors(t_all *all);
+void			toggle_door(t_all *all);
+int				is_solid(t_all *all, int x, int y);
+// sprites.c
+void			draw_sprites(t_all *all);
+void			collect_sprites(t_all *all);
+// draw.c
+void			draw_door(t_all *all, t_ray *ray);
+void			draw_crosshair(t_all *all);
 #endif

@@ -20,7 +20,7 @@ HEADERS = $(addprefix $(HEADERS_DIRECTORY), $(HEADERS_LIST))
 
 SRCS_DIRECTORY = ./src/
 SRCS_LIST	= cub3D.c init.c hook.c utils.c raycasting.c draw.c\
-				moves.c mini_map.c mouse.c\
+				moves.c mini_map.c mouse.c doors.c sprites.c\
 				borders.c check_file.c check_map.c checks_textures.c color_sides.c\
 				errors.c fts_for_struct.c map.c parser.c walls.c
 SRCS = $(addprefix $(SRCS_DIRECTORY), $(SRCS_LIST))

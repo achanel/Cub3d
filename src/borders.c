@@ -12,17 +12,21 @@
 
 #include "cub3D.h"
 
+static int	valid_neighbour(char c)
+{
+	return (c == '1' || c == '0' || c == 'D' || c == '2');
+}
+
 void	check_zero(t_all *all, int i, int j)
 {
-	if ((all->map[i - 1][j - 1] == '1'
-		|| all->map[i - 1][j - 1] == '0') && (all->map[i][j - 1] == '1'
-		|| all->map[i][j - 1] == '0') && (all->map[i + 1][j + 1] == '1'
-		|| all->map[i + 1][j + 1] == '0') && (all->map[i - 1][j + 1] == '1'
-		|| all->map[i - 1][j + 1] == '0') && (all->map[i - 1][j] == '1'
-		|| all->map[i - 1][j] == '0') && (all->map[i + 1][j] == '1'
-		|| all->map[i + 1][j] == '0') && (all->map[i + 1][j - 1] == '1'
-		|| all->map[i + 1][j - 1] == '0') && (all->map[i][j + 1] == '1'
-		|| all->map[i][j + 1] == '0'))
+	if (valid_neighbour(all->map[i - 1][j - 1])
+		&& valid_neighbour(all->map[i][j - 1])
+		&& valid_neighbour(all->map[i + 1][j + 1])
+		&& valid_neighbour(all->map[i - 1][j + 1])
+		&& valid_neighbour(all->map[i - 1][j])
+		&& valid_neighbour(all->map[i + 1][j])
+		&& valid_neighbour(all->map[i + 1][j - 1])
+		&& valid_neighbour(all->map[i][j + 1]))
 		return ;
 	else
 		map_error(all->pars);
@@ -33,7 +37,8 @@ void	map_spaces(t_all *all, int i, int j)
 	if (all->map[i][j] != ' ' && all->map[i][j] != '1' &&
 		all->map[i][j] != '0' && all->map[i][j] != 'N' &&
 		all->map[i][j] != 'S' && all->map[i][j] != 'E' &&
-		all->map[i][j] != 'W')
+		all->map[i][j] != 'W' && all->map[i][j] != 'D' &&
+		all->map[i][j] != '2')
 		map_error(all->pars);
 	else
 		if_space_in_map(all, i, j);
